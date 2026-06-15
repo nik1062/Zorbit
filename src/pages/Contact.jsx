@@ -22,7 +22,7 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    // Save to localStorage safely
+    // Save to localStorage safely so the admin dashboard can still show it
     const saved = localStorage.getItem('zorbitLeads')
     let leads = []
     if (saved) {
@@ -46,6 +46,24 @@ export default function Contact() {
     
     localStorage.setItem('zorbitLeads', JSON.stringify([newLead, ...leads]))
     localStorage.setItem('zorbit_contact_messages', JSON.stringify([newLead, ...leads]))
+
+    // Open native mail client pre-filled with the message details to zorbitweb@gmail.com
+    const subject = encodeURIComponent(`Zorbit Inquest: ${form.project} from ${form.name}`)
+    const body = encodeURIComponent(
+      `Hello Zorbit Team,\n\n` +
+      `Here is a new project brief submitted from the website:\n\n` +
+      `Name: ${form.name}\n` +
+      `Company: ${form.company || 'Personal Brand'}\n` +
+      `Project Type: ${form.project}\n` +
+      `Client Email: ${form.email}\n\n` +
+      `Project Brief:\n` +
+      `${form.message}\n\n` +
+      `Best regards,\n` +
+      `${form.name}`
+    )
+    
+    // Triggering the mailto redirection
+    window.location.href = `mailto:zorbitweb@gmail.com?subject=${subject}&body=${body}`
 
     setSent(true)
     setForm({ name: '', company: '', project: '', email: '', message: '' })
@@ -89,7 +107,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-0.5">Direct Line</p>
-                  <p className="text-white text-sm md:text-base font-semibold">nikunjkumar1062@gmail.com</p>
+                  <p className="text-white text-sm md:text-base font-semibold">zorbitweb@gmail.com</p>
                 </div>
               </div>
 

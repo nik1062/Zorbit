@@ -1,25 +1,32 @@
-import { FiCode, FiLayout, FiActivity } from 'react-icons/fi'
+import { FiCode, FiSmartphone, FiSliders, FiServer } from 'react-icons/fi'
 
 export const servicesData = [
   {
-    id: 'web-engineering',
+    id: 'website-building',
     icon: FiCode,
-    title: 'Full-Stack Web Engineering',
-    desc: 'High-performance frontends paired with robust, secure backend architectures. Built to handle heavy user traffic and deliver sub-second response times.',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Vite', 'GraphQL'],
+    title: 'Website Building',
+    desc: 'High-performance, pixel-perfect frontend websites and web applications built with rapid execution speed and premium aesthetic standards.',
+    tags: ['React 18', 'Vite', 'Tailwind CSS', 'Framer Motion', 'SEO Opt'],
   },
   {
-    id: 'uiux-design',
-    icon: FiLayout,
-    title: 'UI/UX & Identity Design',
-    desc: 'From user journey mapping to custom vector branding assets. We construct aesthetic design systems that translate directly into high-converting interfaces.',
-    tags: ['Figma', 'Vector Branding', 'Design Tokens', 'Prototyping'],
+    id: 'mobile-app',
+    icon: FiSmartphone,
+    title: 'Mobile Application',
+    desc: 'Cross-platform iOS and Android mobile apps crafted with near-native performance, fluid gesture controls, and responsive UI components.',
+    tags: ['React Native', 'Flutter', 'Mobile UI', 'Expo', 'State Sync'],
   },
   {
-    id: 'enterprise-pos',
-    icon: FiActivity,
-    title: 'Custom POS & Enterprise Development',
-    desc: 'Tailor-made, high-velocity Point of Sale engines built for offline-first resilience, quick inventory syncing, and ultra-low interface latency.',
-    tags: ['Offline-First', 'SQLite', 'WebSockets', 'Tailwind', 'FastAPI'],
+    id: 'platform-mgmt',
+    icon: FiSliders,
+    title: 'Platform Management',
+    desc: 'Continuous administration of web ecosystems, secure database clusters, containerized service monitoring, and zero-downtime CI/CD automation.',
+    tags: ['AWS / GCP', 'Docker', 'CI/CD Pipelines', 'Telemetry', 'Cloud SQL'],
+  },
+  {
+    id: 'server-pos',
+    icon: FiServer,
+    title: 'Server Management & POS System Development',
+    desc: 'Deploying robust backend server infrastructures alongside offline-first Point of Sale billing systems with WebSockets and ultra-low database latency.',
+    tags: ['Server Admin', 'POS Engines', 'WebSockets', 'FastAPI', 'SQLite'],
   },
 ]

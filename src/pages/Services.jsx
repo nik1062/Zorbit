@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiCode, FiLayout, FiActivity, FiChevronDown } from 'react-icons/fi'
+import { FiCode, FiSmartphone, FiSliders, FiServer, FiChevronDown } from 'react-icons/fi'
 import PageWrapper from '../components/PageWrapper'
 import { servicesData } from '../data/servicesData'
 
@@ -51,19 +51,22 @@ export default function Services() {
           {/* Left: Core Capabilities Timeline */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div>
-              <span className="text-brand-blue-light text-sm font-semibold uppercase tracking-widest">Our Capabilities</span>
-              <h1 className="font-display text-4xl md:text-5xl font-bold mt-2 mb-4">
-                Services built for <span className="text-brand-blue">scale.</span>
+              <span className="text-brand-blue-light text-sm font-semibold uppercase tracking-widest">Capabilities</span>
+              <h1 className="font-display text-4xl md:text-5xl font-bold mt-2">
+                Services <span className="text-brand-blue">Providing</span>
               </h1>
+              <p className="text-white/30 line-through text-xs md:text-sm font-semibold uppercase tracking-wider mt-1.5 mb-6">
+                work showcase
+              </p>
               <p className="text-slate-300 font-medium text-lg md:text-xl lg:text-2xl max-w-md mb-6 leading-relaxed">
-                We handle the full spectrum of high-end frontend, design, and enterprise tool execution.
+                We handle the full spectrum of high-end engineering, platforms, and server system deployment.
               </p>
             </div>
 
             {/* Vertical Scroll Timeline */}
             <div className="relative border-l-2 border-slate-800 ml-4 pl-8 py-4 flex flex-col gap-12 mt-6">
               {servicesData.map((service, idx) => {
-                const icons = [FiCode, FiLayout, FiActivity]
+                const icons = [FiCode, FiSmartphone, FiSliders, FiServer]
                 const Icon = icons[idx] || FiCode
                 return (
                   <motion.div

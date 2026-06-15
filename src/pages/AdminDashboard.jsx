@@ -68,7 +68,7 @@ export default function AdminDashboard() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-[#05070B] text-white">
+      <div className="min-h-screen bg-[#05070B] text-white pt-20">
         {/* Fixed Top Control Bar using Glassmorphism */}
         <div className="sticky top-[72px] z-40 bg-[#05070B]/80 backdrop-blur-md border-b border-slate-800/80">
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">

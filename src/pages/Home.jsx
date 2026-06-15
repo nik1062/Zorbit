@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiArrowRight } from 'react-icons/hi'
-import { FiCode, FiLayers, FiActivity } from 'react-icons/fi'
+import { FiCode, FiLayers, FiActivity, FiClock, FiCpu, FiGitBranch, FiGitPullRequest, FiSmartphone, FiSliders, FiServer } from 'react-icons/fi'
 import PageWrapper from '../components/PageWrapper'
 import Button from '../components/Button'
 import ReviewSystem from '../components/ReviewSystem'
@@ -19,19 +19,26 @@ const stats = [
 const highlights = [
   {
     icon: FiCode,
-    title: 'Full-Stack Web Engineering',
-    desc: 'High-performance frontends paired with robust, secure backend architectures built to scale.',
+    title: 'Website & App Building',
+    desc: 'High-performance, pixel-perfect frontend websites and mobile applications built with rapid execution speed.',
   },
   {
-    icon: FiLayers,
-    title: 'UI/UX & Identity Design',
-    desc: 'From user journey mapping to custom vector branding assets that convert.',
+    icon: FiSliders,
+    title: 'Platform Management',
+    desc: 'Continuous administration of web ecosystems, secure database clusters, and automated backups.',
   },
   {
-    icon: FiActivity,
-    title: 'Custom POS Engines',
-    desc: 'Offline-first resilience, ultra-low interface latency, and rapid inventory syncing.',
+    icon: FiServer,
+    title: 'Server Ops & POS Development',
+    desc: 'Deploying robust backend server infrastructures alongside offline-first Point of Sale billing systems.',
   },
+]
+
+const sprints = [
+  { name: 'TN-GeoGuard GIS Engine', days: '48 Hours', progress: '15%', color: 'bg-emerald-500 shadow-[0_0_8px_#10B981]' },
+  { name: 'Metro Mirchi 2.0 Platform', days: '5 Days', progress: '35%', color: 'bg-brand-blue shadow-[0_0_8px_#2563EB]' },
+  { name: 'Zorbit Nexus POS System', days: '10 Days', progress: '70%', color: 'bg-cyan-500 shadow-[0_0_8px_#06B6D4]' },
+  { name: 'Smart Library Platform', days: '14 Days', progress: '95%', color: 'bg-violet-500 shadow-[0_0_8px_#8B5CF6]' },
 ]
 
 const fadeUp = {
@@ -140,6 +147,131 @@ export default function Home() {
 
       {/* Tech Ticker Marquee */}
       <TechMarquee />
+
+      {/* Live Studio Telemetry Dashboard */}
+      <section className="border-t border-white/5 bg-brand-dark-3/20 py-24 relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-brand-blue/3 blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+          {/* Left info column */}
+          <div className="lg:col-span-5 flex flex-col items-start text-left">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-xs font-semibold mb-4"
+            >
+              <FiActivity size={12} className="animate-pulse" /> Live Studio Status
+            </motion.div>
+            
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="font-display text-3xl md:text-4xl font-bold mb-4"
+            >
+              Live Telemetry & <span className="text-brand-blue">Active Sprints</span>
+            </motion.h2>
+            
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              custom={1}
+              className="text-slate-300 font-medium text-base md:text-lg mb-8 leading-relaxed max-w-md"
+            >
+              We operate with absolute transparency. Track our current software sprints, deployment velocities, and active queue health metrics in real-time.
+            </motion.p>
+
+            {/* KPI grid */}
+            <div className="grid grid-cols-2 gap-4 w-full">
+              {[
+                { label: 'Active Sprints', val: '4 Pipeline', desc: 'Parallel dev queues', icon: FiGitBranch, color: 'text-brand-blue-glow' },
+                { label: 'Avg. Response SLA', val: '< 4 Hours', desc: 'Inquiry response target', icon: FiClock, color: 'text-emerald-400' },
+                { label: 'Commit Velocity', val: '98.9%', desc: 'On-time milestones', icon: FiGitPullRequest, color: 'text-cyan-400' },
+                { label: 'POS Sync Latency', val: '12ms', desc: 'Offline-first sync speed', icon: FiCpu, color: 'text-violet-400' },
+              ].map((kpi, idx) => (
+                <motion.div
+                  key={kpi.label}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  custom={idx + 2}
+                  className="p-4 rounded-xl bg-brand-dark-2/60 border border-slate-800/80 flex flex-col justify-between"
+                >
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[10px] text-white/40 uppercase tracking-widest font-semibold">{kpi.label}</span>
+                    <kpi.icon size={14} className={kpi.color} />
+                  </div>
+                  <div>
+                    <h4 className="font-display text-base md:text-lg font-bold text-white">{kpi.val}</h4>
+                    <p className="text-[10px] text-white/30 mt-0.5">{kpi.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Gantt Chart Widget */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-7 w-full p-6 md:p-8 rounded-3xl bg-brand-dark-2/50 border border-slate-800/80 backdrop-blur-sm"
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="font-display font-bold text-xs uppercase tracking-wider text-white/60 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Active Project Sprint Timelines
+              </h3>
+              <span className="text-[10px] text-brand-blue-glow font-mono uppercase bg-brand-blue/10 px-2 py-0.5 rounded border border-brand-blue/20">
+                Sync: Active
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {sprints.map((sprint, i) => (
+                <div key={sprint.name} className="flex flex-col gap-2">
+                  <div className="flex justify-between items-center text-xs font-semibold text-white/70">
+                    <span className="truncate max-w-[200px] md:max-w-xs">{sprint.name}</span>
+                    <span className="font-mono text-brand-blue-glow">{sprint.days} remaining</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex-grow bg-brand-dark-3 border border-slate-800/80 rounded-full h-3.5 overflow-hidden relative">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: sprint.progress }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: i * 0.1, ease: 'easeOut' }}
+                        className={`h-full rounded-full ${sprint.color}`}
+                      />
+                    </div>
+                    <span className="w-8 text-right font-mono text-[11px] font-bold text-white/40">
+                      {sprint.progress}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Simulated Git Commit Timeline / Live Stream */}
+            <div className="mt-8 pt-6 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono text-white/40">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                Latest release pushed 14m ago: <span className="text-white/60 font-semibold">v2.6.0</span>
+              </span>
+              <Link to="/work" className="text-brand-blue hover:text-brand-blue-light transition-colors">
+                View Repository Archives &rarr;
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Highlights */}
       <section className="max-w-7xl mx-auto px-6 py-24">

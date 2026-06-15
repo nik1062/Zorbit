@@ -13,7 +13,7 @@ export default function Footer() {
   const [copied, setCopied] = useState(false)
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('nikunjkumar1062@gmail.com')
+    navigator.clipboard.writeText('zorbitweb@gmail.com')
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -54,7 +54,7 @@ export default function Footer() {
 
           <div className="relative flex items-center gap-3 text-slate-300 text-sm md:text-base font-semibold cursor-pointer" onClick={copyEmail}>
             <FiMail className="text-brand-blue-light" size={16} />
-            <span className="hover:text-white transition-colors">nikunjkumar1062@gmail.com</span>
+            <span className="hover:text-white transition-colors">zorbitweb@gmail.com</span>
             <button 
               className="ml-1 text-white/40 hover:text-white focus:outline-none transition-colors cursor-pointer"
               aria-label="Copy Email"
