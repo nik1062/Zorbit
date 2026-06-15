@@ -60,50 +60,27 @@ export const api = {
   async createLead(newLead) {
     let serverSuccess = false
     
-    // If production endpoint is configured, POST to database API
-    if (CLOUD_CONFIG.ENDPOINT) {
-      try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 4000)
-        
-        const response = await fetch(`${CLOUD_CONFIG.ENDPOINT}/rest/v1/leads`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': CLOUD_CONFIG.API_KEY,
-            'Authorization': `Bearer ${CLOUD_CONFIG.API_KEY}`,
-            'Prefer': 'return=representation'
-          },
-          body: JSON.stringify(newLead),
-          signal: controller.signal
-        })
-        
-        clearTimeout(timeoutId)
-        if (response.ok) {
-          serverSuccess = true
-        }
-      } catch (err) {
-        console.warn('API cloud database connection failed. Falling back to local cache.', err)
+    // Trigger our integrated serverless functions pipeline
+    try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 6000)
+      
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newLead),
+        signal: controller.signal
+      })
+      
+      clearTimeout(timeoutId)
+      if (response.ok) {
+        const resData = await response.json()
+        serverSuccess = resData.dbSynced || resData.emailDispatched
       }
-    } else {
-      // Mock secondary server pipeline execution
-      try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 4000)
-        
-        const response = await fetch('/api/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newLead),
-          signal: controller.signal
-        })
-        clearTimeout(timeoutId)
-        if (response.ok) {
-          serverSuccess = true
-        }
-      } catch (err) {
-        console.warn('API Lead mock server offline, storing locally...', err)
-      }
+    } catch (err) {
+      console.warn('Integrated serverless dispatch handler connection failed. Falling back to local storage sync.', err)
     }
 
     // Persistence synchronization
