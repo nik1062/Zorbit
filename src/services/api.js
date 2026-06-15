@@ -7,9 +7,9 @@
 
 // Cloud configuration variables (Configurable via .env file in production)
 const CLOUD_CONFIG = {
-  ENDPOINT: import.meta.env.VITE_DATABASE_URL || '',
-  API_KEY: import.meta.env.VITE_DATABASE_ANON_KEY || '',
-  MODE: import.meta.env.VITE_DATABASE_URL ? 'CLOUD_DB_SYNC' : 'LOCAL_STORAGE_FALLBACK'
+  ENDPOINT: import.meta.env.VITE_DATABASE_URL || import.meta.env.VITE_SUPABASE_URL || '',
+  API_KEY: import.meta.env.VITE_DATABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || '',
+  MODE: (import.meta.env.VITE_DATABASE_URL || import.meta.env.VITE_SUPABASE_URL) ? 'CLOUD_DB_SYNC' : 'LOCAL_STORAGE_FALLBACK'
 }
 
 // Log status on init

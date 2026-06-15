@@ -28,8 +28,8 @@ export default async function handler(req, res) {
 
   // 1. Supabase Database Ingestion
   let dbSuccess = false
-  const supabaseUrl = process.env.VITE_DATABASE_URL
-  const supabaseKey = process.env.VITE_DATABASE_ANON_KEY
+  const supabaseUrl = process.env.VITE_DATABASE_URL || process.env.VITE_SUPABASE_URL
+  const supabaseKey = process.env.VITE_DATABASE_ANON_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY
 
   if (supabaseUrl && supabaseKey) {
     try {
