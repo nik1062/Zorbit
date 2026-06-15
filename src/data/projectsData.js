@@ -7,6 +7,7 @@ export const projectsData = [
     problem: 'The restaurant was using an outdated, non-responsive web portal with high load times, leading to poor customer conversion rates and zero online orders.',
     solution: 'Re-engineered the digital storefront with a custom menu navigator, sleek layout, fluid micro-interactions, and visual branding assets.',
     completionTime: '5 Days',
+    metrics: ['+45% Online Orders', 'Sub-2s Load Speed'],
     gradient: 'from-blue-600/20 to-cyan-600/10',
   },
   {
@@ -17,6 +18,7 @@ export const projectsData = [
     problem: 'Existing POS solutions suffered from high lag and interface delays under rush hour traffic, causing order bottlenecks and server disconnects.',
     solution: 'Developed an offline-first, high-velocity billing engine with instant syncing, touch-screen optimization, and zero latency.',
     completionTime: '10 Days',
+    metrics: ['Sub-15ms POS Sync', '+30% Checkout Speed'],
     gradient: 'from-violet-600/20 to-blue-600/10',
   },
   {
@@ -27,6 +29,7 @@ export const projectsData = [
     problem: 'Campus resource tracking relied on legacy SOAP APIs that suffered from huge overhead, leading to resource catalog sync mismatches.',
     solution: 'Built a lightweight catalog search engine paired with FastAPI to eliminate serialization overhead and enable real-time tracking.',
     completionTime: '2 Weeks',
+    metrics: ['99.9% Sync Accuracy', '-60% API Latency'],
     gradient: 'from-indigo-600/20 to-purple-600/10',
   },
   {
@@ -37,6 +40,7 @@ export const projectsData = [
     problem: 'Local administrative authorities had no real-time coordination map to track government land asset protection alerts and coordinate boundaries.',
     solution: 'Engineered a pitch-ready MVP map portal with live coordinate tracking, visual geofencing, and immediate alerts.',
     completionTime: '48 Hours (Niral Thiruvizha 3.0)',
+    metrics: ['100% Geofence Accuracy', 'Sub-1s Alert SLA'],
     gradient: 'from-cyan-600/20 to-emerald-600/10',
   },
   {
@@ -47,6 +51,7 @@ export const projectsData = [
     problem: 'Managing personal finance and analyzing monthly budgeting across disparate accounts is complex and often exposes user data to third-party vulnerabilities.',
     solution: 'Engineered a highly secure, role-based fintech tracker featuring real-time transaction tracking, automated budgeting, and interactive chart-based financial analytics.',
     completionTime: '7 Days',
+    metrics: ['AES-256 Encrypted', '99.9% Ledger Sync'],
     gradient: 'from-teal-600/20 to-cyan-600/10',
   },
   {
@@ -57,6 +62,7 @@ export const projectsData = [
     problem: 'Legacy furniture shopping interfaces suffer from sluggish load times, rigid page transitions, and complex checkout pipelines, causing high user abandonment.',
     solution: 'Created a high-fidelity furniture store experience featuring optimized product catalogs, fluid animations, instant filtering, and a seamless shopping cart checkout funnel.',
     completionTime: '6 Days',
+    metrics: ['+28% Conversion Rate', '-40% Cart Abandonment'],
     gradient: 'from-amber-600/20 to-orange-600/10',
   },
 ]

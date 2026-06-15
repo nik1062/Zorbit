@@ -109,6 +109,17 @@ export default function Work() {
                       <h3 className="font-display font-bold text-xl mb-2 text-white group-hover:text-brand-blue-glow transition-colors">
                         {project.title}
                       </h3>
+                      {/* Metrics Badges */}
+                      <div className="flex flex-wrap gap-2 mt-1.5 mb-3">
+                        {project.metrics && project.metrics.map((metric) => (
+                          <span
+                            key={metric}
+                            className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-mono tracking-wider font-bold uppercase"
+                          >
+                            {metric}
+                          </span>
+                        ))}
+                      </div>
                       <p className="text-slate-250 text-sm md:text-base leading-relaxed line-clamp-3">
                         {project.desc || project.problem}
                       </p>
@@ -175,6 +186,17 @@ export default function Work() {
                 <div className="flex items-center gap-2 mt-2 text-slate-300 text-xs md:text-sm font-mono tracking-wide">
                   <FiClock size={12} className="text-brand-blue" />
                   <span>Sprint Delivery: {selectedProject.completionTime}</span>
+                </div>
+                {/* Modal Metrics Badges */}
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {selectedProject.metrics && selectedProject.metrics.map((metric) => (
+                    <span
+                      key={metric}
+                      className="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-mono tracking-wider font-bold uppercase"
+                    >
+                      {metric}
+                    </span>
+                  ))}
                 </div>
               </div>
 

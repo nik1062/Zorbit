@@ -483,16 +483,24 @@ export default function Contact() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Project Type</label>
-                    <input
-                      type="text"
+                    <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Project Focus</label>
+                    <select
                       name="project"
                       value={form.project}
                       onChange={handleChange}
-                      placeholder="e.g. Web App, Custom POS"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-brand-dark-3 border border-slate-800 text-white placeholder-white/20 text-sm focus:outline-none focus:border-brand-blue/50 transition-colors"
-                    />
+                      className="w-full px-4 py-3 rounded-xl bg-brand-dark-3 border border-slate-800 text-white text-sm focus:outline-none focus:border-brand-blue/50 transition-colors cursor-pointer"
+                    >
+                      <option value="" disabled>Select Project Focus...</option>
+                      <option value="Website Building">Website Building (React/Next.js)</option>
+                      <option value="Mobile App">Mobile App (Flutter/React Native)</option>
+                      <option value="Platform Mgmt">Platform Management (FastAPI/Node.js)</option>
+                      <option value="Server & POS">Server Ops & POS Development (AWS/API Sync)</option>
+                      <option value="Custom Enterprise Software">Custom Enterprise Software (Full-Stack System)</option>
+                      {form.project && !['Website Building', 'Mobile App', 'Platform Mgmt', 'Server & POS', 'Custom Enterprise Software'].includes(form.project) && (
+                        <option value={form.project}>{form.project}</option>
+                      )}
+                    </select>
                   </div>
                   <div>
                     <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Email Address</label>
