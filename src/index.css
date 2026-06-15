@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0A0A0F;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: #2563EB;
+    color: #ffffff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A0A0F;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2563EB;
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(37, 99, 235, 0.25);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px rgba(96, 165, 250, 0.4);
+  }
+
+  .border-glow {
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+  }
+
+  @keyframes border-beam {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .border-beam-container {
+    position: relative;
+    overflow: hidden;
+    padding: 1px;
+    z-index: 10;
+  }
+
+  .border-beam-effect {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: conic-gradient(from 0deg, transparent 55%, #3B82F6 75%, #00D2FF 90%, transparent 100%);
+    animation: border-beam 5s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .border-beam-container:hover .border-beam-effect {
+    opacity: 0.8;
+  }
+
+  .border-beam-content {
+    position: relative;
+    z-index: 10;
+    border-radius: inherit;
+    height: 100%;
+    width: 100%;
+  }
+}
