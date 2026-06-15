@@ -50,9 +50,9 @@ export default function Navbar() {
           ))}
           <NavLink
             to="/contact"
-            className="ml-2 px-5 py-2.5 bg-brand-blue hover:bg-brand-blue-light text-white text-sm md:text-base font-bold rounded-lg transition-colors duration-200"
+            className="ml-2 px-5 py-2.5 bg-gradient-to-r from-brand-blue to-brand-blue-light hover:from-brand-blue-light hover:to-brand-blue text-white text-xs md:text-sm font-bold uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.35)] hover:shadow-[0_0_30px_rgba(37,99,235,0.55)] border border-brand-blue-light/30 transition-all duration-300 transform hover:-translate-y-0.5"
           >
-            Let's Talk
+            Consult Engineers
           </NavLink>
         </nav>
 
@@ -93,9 +93,9 @@ export default function Navbar() {
               <NavLink
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 text-center px-5 py-3 bg-brand-blue hover:bg-brand-blue-light text-white text-sm md:text-base font-bold rounded-lg transition-colors duration-200"
+                className="mt-2 text-center px-5 py-3 bg-gradient-to-r from-brand-blue to-brand-blue-light hover:from-brand-blue-light hover:to-brand-blue text-white text-xs md:text-sm font-bold uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.35)] hover:shadow-[0_0_30px_rgba(37,99,235,0.55)] border border-brand-blue-light/30 transition-all duration-300"
               >
-                Let's Talk
+                Consult Engineers
               </NavLink>
             </div>
           </motion.div>

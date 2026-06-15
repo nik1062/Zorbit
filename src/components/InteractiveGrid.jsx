@@ -9,13 +9,7 @@ export default function InteractiveGrid() {
     const ctx = canvas.getContext('2d')
     let animationFrameId
 
-    // Set dimensions
-    const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+
 
     // Mouse coordinates tracker
     const mouse = { x: null, y: null, radius: 160 }
