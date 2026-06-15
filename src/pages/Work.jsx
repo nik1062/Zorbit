@@ -63,7 +63,7 @@ export default function Work() {
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4.5 py-2.5 rounded-xl text-xs md:text-sm font-semibold tracking-wide border transition-all cursor-pointer ${
+              className={`px-5 py-2.5 rounded-xl text-xs md:text-sm font-semibold tracking-wide border transition-all cursor-pointer ${
                 activeFilter === filter
                   ? 'bg-brand-blue/10 border-brand-blue/30 text-brand-blue-glow shadow-[0_0_15px_rgba(59,130,246,0.15)]'
                   : 'bg-brand-dark hover:bg-brand-dark-3 text-white/40 hover:text-white border-slate-800'
@@ -153,7 +153,7 @@ export default function Work() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-2xl p-8 rounded-3xl bg-brand-dark-2 border border-slate-800 glow-blue text-left relative overflow-hidden flex flex-col gap-6"
+              className="w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 md:p-8 rounded-3xl bg-brand-dark-2 border border-slate-800 glow-blue text-left relative flex flex-col gap-6"
             >
               {/* Close Button */}
               <button
@@ -223,7 +223,7 @@ export default function Work() {
                   </div>
                 </div>
 
-                <Link to="/contact" className="w-full sm:w-auto mt-2 sm:mt-0">
+                <Link to="/contact" className="w-full sm:w-auto mt-2 sm:mt-0" onClick={() => setSelectedProject(null)}>
                   <Button variant="primary" className="py-2.5 text-xs w-full justify-center">
                     Initiate Sprint <FiArrowRight size={12} />
                   </Button>
