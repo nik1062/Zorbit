@@ -59,7 +59,7 @@ export default function Contact() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-sm font-semibold mb-8"
+          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-xs md:text-sm font-semibold mb-8"
         >
           <span className="w-2.5 h-2.5 rounded-full bg-brand-blue animate-pulse shadow-[0_0_10px_#2563EB]" />
           Now Booking Late Q2 2026
@@ -78,7 +78,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-12 gap-16 mt-14 items-start">
           {/* Details column */}
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={2} className="lg:col-span-5 flex flex-col gap-8">
-            <p className="text-white/40 text-lg leading-relaxed max-w-md">
+            <p className="text-slate-300 font-medium text-lg md:text-xl lg:text-2xl max-w-md leading-relaxed">
               Have a project in mind? We'd love to hear about it. Tell us your goals in our structured blueprint form and Zorbit's engineers will review it.
             </p>
 
@@ -88,8 +88,8 @@ export default function Contact() {
                   <FiMail size={18} className="text-brand-blue-light" />
                 </div>
                 <div>
-                  <p className="text-white/30 text-xs mb-0.5">Direct Line</p>
-                  <p className="text-white text-sm font-medium">nikunjkumar1062@gmail.com</p>
+                  <p className="text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-0.5">Direct Line</p>
+                  <p className="text-white text-sm md:text-base font-semibold">nikunjkumar1062@gmail.com</p>
                 </div>
               </div>
 
@@ -98,8 +98,8 @@ export default function Contact() {
                   <FiMapPin size={18} className="text-brand-blue-light" />
                 </div>
                 <div>
-                  <p className="text-white/30 text-xs mb-0.5">Location</p>
-                  <p className="text-white text-sm font-medium">Chennai, Tamil Nadu, India</p>
+                  <p className="text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-0.5">Location</p>
+                  <p className="text-white text-sm md:text-base font-semibold">Chennai, Tamil Nadu, India</p>
                 </div>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Contact() {
                   <FiSend size={28} className="text-brand-blue-light" />
                 </div>
                 <h3 className="font-display text-2xl font-bold mb-2">Inquest Logged!</h3>
-                <p className="text-white/40 text-sm">We've saved your blueprint in our client database.</p>
+                <p className="text-slate-300 text-sm md:text-base">We've saved your blueprint in our client database.</p>
                 <Button variant="outline" className="mt-6 text-xs cursor-pointer" onClick={() => setSent(false)}>
                   Submit New Brief
                 </Button>
@@ -135,7 +135,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="p-8 rounded-3xl bg-brand-dark-2/50 border border-slate-800/80 flex flex-col gap-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white/60 text-xs font-semibold uppercase tracking-wider mb-2">Your Name</label>
+                    <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Your Name</label>
                     <input
                       type="text"
                       name="name"
@@ -147,7 +147,7 @@ export default function Contact() {
                     />
                   </div>
                   <div>
-                    <label className="block text-white/60 text-xs font-semibold uppercase tracking-wider mb-2">Company / Brand</label>
+                    <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Company / Brand</label>
                     <input
                       type="text"
                       name="company"
@@ -161,7 +161,7 @@ export default function Contact() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white/60 text-xs font-semibold uppercase tracking-wider mb-2">Project Type</label>
+                    <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Project Type</label>
                     <input
                       type="text"
                       name="project"
@@ -173,7 +173,7 @@ export default function Contact() {
                     />
                   </div>
                   <div>
-                    <label className="block text-white/60 text-xs font-semibold uppercase tracking-wider mb-2">Email Address</label>
+                    <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Email Address</label>
                     <input
                       type="email"
                       name="email"
@@ -187,7 +187,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-white/60 text-xs font-semibold uppercase tracking-wider mb-2">Project Brief & Timeline Details</label>
+                  <label className="block text-slate-300 text-xs md:text-sm font-bold uppercase tracking-wide mb-2">Project Brief & Details</label>
                   <textarea
                     name="message"
                     value={form.message}

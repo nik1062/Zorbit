@@ -28,7 +28,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="font-display font-bold text-2xl tracking-tight">
+        <NavLink to="/" className="font-display font-bold text-2xl tracking-tight text-white">
           Zor<span className="text-brand-blue">bit</span>
         </NavLink>
 
@@ -39,8 +39,8 @@ export default function Navbar() {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors duration-200 ${
-                  isActive ? 'text-brand-blue-light' : 'text-white/60 hover:text-white'
+                `text-sm md:text-base font-semibold transition-colors duration-200 ${
+                  isActive ? 'text-brand-blue-light' : 'text-slate-300 hover:text-white'
                 }`
               }
             >
@@ -49,7 +49,7 @@ export default function Navbar() {
           ))}
           <NavLink
             to="/contact"
-            className="ml-2 px-5 py-2 bg-brand-blue hover:bg-brand-blue-light text-white text-sm font-semibold rounded-lg transition-colors duration-200"
+            className="ml-2 px-5 py-2.5 bg-brand-blue hover:bg-brand-blue-light text-white text-sm md:text-base font-bold rounded-lg transition-colors duration-200"
           >
             Let's Talk
           </NavLink>
@@ -57,7 +57,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white/80 hover:text-white focus:outline-none"
+          className="md:hidden text-white/80 hover:text-white focus:outline-none cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -81,8 +81,8 @@ export default function Navbar() {
                   to={to}
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text-sm font-medium transition-colors ${
-                      isActive ? 'text-brand-blue-light' : 'text-white/60 hover:text-white'
+                    `text-sm md:text-base font-semibold transition-colors ${
+                      isActive ? 'text-brand-blue-light' : 'text-slate-300 hover:text-white'
                     }`
                   }
                 >
@@ -92,7 +92,7 @@ export default function Navbar() {
               <NavLink
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 text-center px-5 py-3 bg-brand-blue hover:bg-brand-blue-light text-white text-sm font-semibold rounded-lg transition-colors duration-200"
+                className="mt-2 text-center px-5 py-3 bg-brand-blue hover:bg-brand-blue-light text-white text-sm md:text-base font-bold rounded-lg transition-colors duration-200"
               >
                 Let's Talk
               </NavLink>

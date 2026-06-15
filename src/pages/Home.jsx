@@ -62,7 +62,7 @@ export default function Home() {
               variants={fadeUp}
               initial="hidden"
               animate="show"
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-sm font-semibold mb-8"
+              className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-xs md:text-sm font-semibold tracking-wide mb-8"
             >
               <span className="w-2.5 h-2.5 rounded-full bg-brand-blue animate-pulse shadow-[0_0_10px_#2563EB]" />
               Now Booking Late Q2 2026
@@ -83,7 +83,7 @@ export default function Home() {
               initial="hidden"
               animate="show"
               custom={2}
-              className="text-white/50 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed"
+              className="text-slate-300 font-medium text-lg md:text-xl lg:text-2xl max-w-2xl mb-10 leading-relaxed"
             >
               Zorbit is an elite creative studio specializing in full-stack web architectures, UI/UX systems, and tailor-made enterprise Point of Sale systems.
             </motion.p>
@@ -131,8 +131,8 @@ export default function Home() {
               custom={i}
               className="text-center"
             >
-              <p className="font-display text-3xl md:text-4xl font-bold text-brand-blue-light mb-1">{value}</p>
-              <p className="text-white/40 text-xs uppercase tracking-wider">{label}</p>
+              <p className="font-display text-3xl md:text-4xl font-bold text-brand-blue-light mb-1.5">{value}</p>
+              <p className="text-slate-300 text-xs md:text-sm font-semibold uppercase tracking-wide">{label}</p>
             </motion.div>
           ))}
         </div>
@@ -158,7 +158,7 @@ export default function Home() {
           whileInView="show"
           viewport={{ once: true }}
           custom={1}
-          className="text-white/40 mb-14 max-w-xl"
+          className="text-slate-300 font-medium text-lg md:text-xl max-w-2xl mb-14 leading-relaxed"
         >
           We build robust, responsive assets optimized for immediate deployment.
         </motion.p>
@@ -178,7 +178,7 @@ export default function Home() {
                 <Icon size={22} className="text-brand-blue-light" />
               </div>
               <h3 className="font-display font-semibold text-lg mb-2">{title}</h3>
-              <p className="text-white/40 text-sm leading-relaxed">{desc}</p>
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </div>
@@ -203,7 +203,7 @@ export default function Home() {
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
             Have a project concept <span className="text-brand-blue">ready?</span>
           </h2>
-          <p className="text-white/40 mb-8 max-w-lg mx-auto">
+          <p className="text-slate-300 font-medium text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
             Book our engineering sprint team today. We'll start coordinate planning immediately.
           </p>
           <Link to="/contact">

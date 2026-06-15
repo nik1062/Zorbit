@@ -19,7 +19,6 @@ export default function Work() {
   const [selectedProject, setSelectedProject] = useState(null)
   const [activeFilter, setActiveFilter] = useState('All')
 
-  // Map user selections to projectsData category matches
   const filteredProjects = projectsData.filter((project) => {
     if (activeFilter === 'All') return true
     if (activeFilter === 'Web') return project.category.includes('Web')
@@ -53,7 +52,7 @@ export default function Work() {
           initial="hidden"
           animate="show"
           custom={2}
-          className="text-white/40 text-lg max-w-xl mb-12"
+          className="text-slate-300 font-medium text-lg md:text-xl lg:text-2xl max-w-2xl mb-12 leading-relaxed"
         >
           Real-world problem solving. We design and launch fully stable MVPs and robust production networks in record time. Click any card below to open its engineering ledger.
         </motion.p>
@@ -64,7 +63,7 @@ export default function Work() {
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4.5 py-2 rounded-xl text-xs font-semibold tracking-wide border transition-all cursor-pointer ${
+              className={`px-4.5 py-2.5 rounded-xl text-xs md:text-sm font-semibold tracking-wide border transition-all cursor-pointer ${
                 activeFilter === filter
                   ? 'bg-brand-blue/10 border-brand-blue/30 text-brand-blue-glow shadow-[0_0_15px_rgba(59,130,246,0.15)]'
                   : 'bg-brand-dark hover:bg-brand-dark-3 text-white/40 hover:text-white border-slate-800'
@@ -97,11 +96,11 @@ export default function Work() {
                   <div className="relative z-10 flex flex-col gap-5 h-full w-full">
                     {/* Meta details */}
                     <div className="flex justify-between items-center w-full">
-                      <span className="text-brand-blue-light text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 bg-brand-blue/10 border border-brand-blue/20 rounded-full">
+                      <span className="text-brand-blue-light text-[10px] md:text-xs font-bold uppercase tracking-wide px-2.5 py-1 bg-brand-blue/10 border border-brand-blue/20 rounded-full">
                         {project.category}
                       </span>
-                      <span className="text-white/40 text-[10px] flex items-center gap-1 font-mono">
-                        <FiClock size={11} className="text-brand-blue-glow" /> {project.completionTime}
+                      <span className="text-slate-300 text-xs md:text-sm flex items-center gap-1 font-mono tracking-wide">
+                        <FiClock size={12} className="text-brand-blue-glow" /> {project.completionTime}
                       </span>
                     </div>
 
@@ -110,7 +109,7 @@ export default function Work() {
                       <h3 className="font-display font-bold text-xl mb-2 text-white group-hover:text-brand-blue-glow transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-white/40 text-xs leading-relaxed line-clamp-3">
+                      <p className="text-slate-250 text-sm md:text-base leading-relaxed line-clamp-3">
                         {project.desc || project.problem}
                       </p>
                     </div>
@@ -120,13 +119,13 @@ export default function Work() {
                       {project.techStack.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded-lg bg-brand-dark-3 text-white/30 text-[9px] border border-white/5 font-mono"
+                          className="px-2.5 py-1 rounded-lg bg-brand-dark-3 text-slate-300 text-xs md:text-sm border border-white/5 font-mono tracking-wide"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.techStack.length > 3 && (
-                        <span className="text-[9px] text-white/20 font-mono self-center font-semibold">
+                        <span className="text-xs md:text-sm text-slate-300 font-mono font-semibold self-center">
                           +{project.techStack.length - 3} more
                         </span>
                       )}
@@ -167,13 +166,13 @@ export default function Work() {
 
               {/* Modal Header */}
               <div>
-                <span className="text-brand-blue-light text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 bg-brand-blue/10 border border-brand-blue/20 rounded-full">
+                <span className="text-brand-blue-light text-xs md:text-sm font-bold uppercase tracking-wide px-2.5 py-1 bg-brand-blue/10 border border-brand-blue/20 rounded-full">
                   {selectedProject.category}
                 </span>
                 <h2 className="font-display font-bold text-3xl mt-3 text-white">
                   {selectedProject.title}
                 </h2>
-                <div className="flex items-center gap-2 mt-2 text-white/40 text-xs font-mono">
+                <div className="flex items-center gap-2 mt-2 text-slate-300 text-xs md:text-sm font-mono tracking-wide">
                   <FiClock size={12} className="text-brand-blue" />
                   <span>Sprint Delivery: {selectedProject.completionTime}</span>
                 </div>
@@ -187,8 +186,8 @@ export default function Work() {
                     <FiAlertCircle className="text-red-400" size={16} />
                   </div>
                   <div>
-                    <h4 className="text-[10px] text-white/30 uppercase font-semibold tracking-wider font-mono">Problem Statement</h4>
-                    <p className="text-white/70 text-sm leading-relaxed mt-1">
+                    <h4 className="text-xs md:text-sm text-slate-300 uppercase font-semibold tracking-wider font-mono">Problem Statement</h4>
+                    <p className="text-slate-200 text-sm md:text-base leading-relaxed mt-1">
                       {selectedProject.problem}
                     </p>
                   </div>
@@ -200,8 +199,8 @@ export default function Work() {
                     <FiCheckCircle className="text-emerald-400" size={16} />
                   </div>
                   <div>
-                    <h4 className="text-[10px] text-white/30 uppercase font-semibold tracking-wider font-mono">Engineering Solution</h4>
-                    <p className="text-white/70 text-sm leading-relaxed mt-1">
+                    <h4 className="text-xs md:text-sm text-slate-300 uppercase font-semibold tracking-wider font-mono">Engineering Solution</h4>
+                    <p className="text-slate-200 text-sm md:text-base leading-relaxed mt-1">
                       {selectedProject.solution}
                     </p>
                   </div>
@@ -211,12 +210,12 @@ export default function Work() {
               {/* Modal Footer */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                  <h4 className="text-[10px] text-white/30 uppercase font-semibold tracking-wider font-mono mb-2">Technology Framework</h4>
+                  <h4 className="text-xs md:text-sm text-slate-300 uppercase font-semibold tracking-wider font-mono mb-2">Technology Framework</h4>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedProject.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-lg bg-brand-dark-3 text-white/50 text-[10px] border border-slate-800 font-mono"
+                        className="px-2.5 py-1 rounded-lg bg-brand-dark-3 text-slate-300 text-xs md:text-sm border border-slate-800 font-mono tracking-wide"
                       >
                         {tech}
                       </span>

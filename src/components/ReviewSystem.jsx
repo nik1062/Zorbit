@@ -88,7 +88,7 @@ export default function ReviewSystem() {
       <div className="lg:col-span-2 flex flex-col gap-6">
         <h3 className="font-display font-bold text-2xl mb-2">What Our Partners Say</h3>
         {approvedReviews.length === 0 ? (
-          <p className="text-white/40 text-sm">No reviews featured at the moment.</p>
+          <p className="text-slate-300 text-sm md:text-base font-medium">No reviews featured at the moment.</p>
         ) : (
           <div className="grid sm:grid-cols-2 gap-6">
             {approvedReviews.map((rev) => (
@@ -109,14 +109,14 @@ export default function ReviewSystem() {
                       />
                     ))}
                   </div>
-                  <p className="text-white/75 text-sm leading-relaxed mb-4 italic">"{rev.text}"</p>
+                  <p className="text-slate-200 text-sm md:text-base leading-relaxed mb-4 italic">"{rev.text}"</p>
                 </div>
-                <div className="border-t border-white/5 pt-3 mt-2 flex justify-between items-center text-xs">
+                <div className="border-t border-white/5 pt-3 mt-2 flex justify-between items-center text-xs md:text-sm">
                   <div>
-                    <p className="text-white font-medium">{rev.name}</p>
-                    <p className="text-brand-blue-light">{rev.company}</p>
+                    <p className="text-white font-semibold tracking-wide">{rev.name}</p>
+                    <p className="text-brand-blue-light font-medium tracking-wide mt-0.5">{rev.company}</p>
                   </div>
-                  <span className="text-white/30">{rev.date}</span>
+                  <span className="text-slate-300 text-[10px] md:text-xs font-mono">{rev.date}</span>
                 </div>
               </motion.div>
             ))}
@@ -129,13 +129,13 @@ export default function ReviewSystem() {
         <h3 className="font-display font-semibold text-xl mb-4">Leave Feedback</h3>
         {success ? (
           <div className="text-center py-8">
-            <p className="text-brand-blue-glow font-medium mb-1">Feedback Submitted!</p>
-            <p className="text-white/40 text-xs leading-relaxed">Thank you. Your review has been sent to our developer workspace for pending moderator approval.</p>
+            <p className="text-brand-blue-glow font-bold text-sm md:text-base mb-1">Feedback Submitted!</p>
+            <p className="text-slate-300 text-xs md:text-sm leading-relaxed">Thank you. Your review has been sent to our developer workspace for pending moderator approval.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
-              <label className="block text-white/50 text-xs mb-1.5">Rating</label>
+              <label className="block text-slate-300 text-xs md:text-sm font-semibold uppercase tracking-wide mb-1.5">Rating</label>
               <div className="flex gap-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
@@ -160,7 +160,7 @@ export default function ReviewSystem() {
             </div>
 
             <div>
-              <label className="block text-white/50 text-xs mb-1">Your Name</label>
+              <label className="block text-slate-300 text-xs md:text-sm font-semibold uppercase tracking-wide mb-1.5">Your Name</label>
               <input
                 type="text"
                 required
@@ -172,7 +172,7 @@ export default function ReviewSystem() {
             </div>
 
             <div>
-              <label className="block text-white/50 text-xs mb-1">Company / Project (Optional)</label>
+              <label className="block text-slate-300 text-xs md:text-sm font-semibold uppercase tracking-wide mb-1.5">Company / Project</label>
               <input
                 type="text"
                 value={form.company}
@@ -183,7 +183,7 @@ export default function ReviewSystem() {
             </div>
 
             <div>
-              <label className="block text-white/50 text-xs mb-1">Review</label>
+              <label className="block text-slate-300 text-xs md:text-sm font-semibold uppercase tracking-wide mb-1.5">Review</label>
               <textarea
                 required
                 rows={3}
@@ -194,7 +194,7 @@ export default function ReviewSystem() {
               />
             </div>
 
-            <Button type="submit" variant="primary" className="py-2 text-xs w-full">
+            <Button type="submit" variant="primary" className="py-2.5 text-xs w-full font-bold uppercase tracking-wider">
               Submit Review
             </Button>
           </form>

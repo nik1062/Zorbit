@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiCode, FiLayout, FiActivity, FiSearch, FiChevronDown, FiCompass, FiSettings, FiBriefcase } from 'react-icons/fi'
+import { FiCode, FiLayout, FiActivity, FiChevronDown } from 'react-icons/fi'
 import PageWrapper from '../components/PageWrapper'
 import { servicesData } from '../data/servicesData'
 
@@ -55,7 +55,7 @@ export default function Services() {
               <h1 className="font-display text-4xl md:text-5xl font-bold mt-2 mb-4">
                 Services built for <span className="text-brand-blue">scale.</span>
               </h1>
-              <p className="text-white/40 text-sm max-w-md">
+              <p className="text-slate-300 font-medium text-lg md:text-xl lg:text-2xl max-w-md mb-6 leading-relaxed">
                 We handle the full spectrum of high-end frontend, design, and enterprise tool execution.
               </p>
             </div>
@@ -78,18 +78,18 @@ export default function Services() {
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-800 group-hover:bg-brand-blue-glow group-hover:shadow-[0_0_8px_#3B82F6] transition-all" />
                     </div>
 
-                    <div className="flex items-center gap-3 text-brand-blue-glow font-bold tracking-wide text-sm">
+                    <div className="flex items-center gap-3 text-brand-blue-glow font-bold tracking-wide text-sm md:text-base">
                       <Icon size={16} />
                       <h3>{service.title}</h3>
                     </div>
-                    <p className="text-white/50 text-xs leading-relaxed max-w-md">
+                    <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-md">
                       {service.desc}
                     </p>
                     <div className="flex flex-wrap gap-1.5 mt-1">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded-md bg-brand-dark-2 border border-white/5 text-white/30 text-[9px] font-mono"
+                          className="px-2.5 py-1 rounded-md bg-brand-dark-2 border border-white/5 text-slate-300 text-xs md:text-sm font-mono tracking-wide"
                         >
                           {tag}
                         </span>
@@ -106,7 +106,7 @@ export default function Services() {
             <div className="mb-6">
               <span className="text-brand-blue-light text-xs font-semibold uppercase tracking-widest font-mono">Operations Pipeline</span>
               <h2 className="font-display font-bold text-2xl mt-1 text-white">Standard Operating Procedure</h2>
-              <p className="text-white/40 text-xs mt-1">How Zorbit transitions your ideas into stable code models.</p>
+              <p className="text-slate-300 text-xs md:text-sm font-medium mt-1 tracking-wide">How Zorbit transitions your ideas into stable code models.</p>
             </div>
 
             {/* Accordion List */}
@@ -123,7 +123,7 @@ export default function Services() {
                     {/* Header trigger */}
                     <button
                       onClick={() => setActiveSop(isOpen ? '' : step.id)}
-                      className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-sm text-white hover:text-brand-blue-glow focus:outline-none transition-colors cursor-pointer"
+                      className="w-full flex items-center justify-between px-5 py-4 text-left font-semibold text-sm md:text-base text-white hover:text-brand-blue-glow focus:outline-none transition-colors cursor-pointer"
                     >
                       <span>{step.title}</span>
                       <motion.div
@@ -144,12 +144,12 @@ export default function Services() {
                           transition={{ duration: 0.25, ease: 'easeInOut' }}
                         >
                           <div className="px-5 pb-5 pt-1 border-t border-slate-800/40 flex flex-col gap-3">
-                            <p className="text-white/50 text-xs leading-relaxed">
+                            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
                               {step.desc}
                             </p>
                             <div className="flex flex-col gap-1.5 mt-2">
                               {step.details.map((detail, idx) => (
-                                <div key={idx} className="flex items-center gap-2 text-[10px] text-brand-blue-glow font-mono">
+                                <div key={idx} className="flex items-center gap-2 text-xs md:text-sm text-brand-blue-glow font-mono tracking-wide">
                                   <span className="w-1 h-1 rounded-full bg-brand-blue" />
                                   <span>{detail}</span>
                                 </div>
