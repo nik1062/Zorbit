@@ -7,6 +7,8 @@ import AdminStats from '../components/admin/AdminStats'
 import MessageRow from '../components/admin/MessageRow'
 import ReviewModerator from '../components/admin/ReviewModerator'
 
+import { api } from '../services/api'
+
 export default function AdminDashboard() {
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [messages, setMessages] = useState([])
@@ -19,26 +21,14 @@ export default function AdminDashboard() {
       setIsAuthorized(true)
     }
 
-    // Load data from localStorage safely
-    const savedMessages = localStorage.getItem('zorbitLeads') || localStorage.getItem('zorbit_contact_messages')
-    if (savedMessages) {
-      try {
-        setMessages(JSON.parse(savedMessages))
-      } catch (err) {
-        console.error('Error parsing stored messages in admin panel', err)
-        setMessages([])
-      }
-    }
+    // Central API requests for data loading
+    api.getLeads().then((data) => {
+      setMessages(data)
+    })
 
-    const savedReviews = localStorage.getItem('zorbit_reviews')
-    if (savedReviews) {
-      try {
-        setReviews(JSON.parse(savedReviews))
-      } catch (err) {
-        console.error('Error parsing stored reviews in admin panel', err)
-        setReviews([])
-      }
-    }
+    api.getReviews().then((data) => {
+      setReviews(data)
+    })
   }, [])
 
   const handleAuthorize = () => {
@@ -51,15 +41,14 @@ export default function AdminDashboard() {
     sessionStorage.removeItem('zorbit_admin_dev_auth')
   }
 
-  const handleUpdateMessages = (updatedMessages) => {
-    localStorage.setItem('zorbitLeads', JSON.stringify(updatedMessages))
-    localStorage.setItem('zorbit_contact_messages', JSON.stringify(updatedMessages))
-    setMessages(updatedMessages)
+  const handleUpdateMessages = async (updatedMessages) => {
+    const data = await api.updateLeads(updatedMessages)
+    setMessages(data)
   }
 
-  const handleUpdateReviews = (updatedReviews) => {
-    localStorage.setItem('zorbit_reviews', JSON.stringify(updatedReviews))
-    setReviews(updatedReviews)
+  const handleUpdateReviews = async (updatedReviews) => {
+    const data = await api.updateReviews(updatedReviews)
+    setReviews(data)
   }
 
   if (!isAuthorized) {
@@ -75,7 +64,7 @@ export default function AdminDashboard() {
             <div className="flex items-center gap-3">
               <div className="w-2.5 h-2.5 rounded-full bg-brand-blue animate-pulse shadow-[0_0_8px_#2563EB]" />
               <h1 className="font-display font-bold text-lg tracking-tight">
-                Zorbit <span className="text-brand-blue-glow">DevConsole</span>
+                zorbit-studio <span className="text-brand-blue-glow">DevConsole</span>
               </h1>
               <span className="px-2 py-0.5 rounded bg-brand-dark-3 text-white/40 text-[9px] font-mono border border-slate-800">
                 v2.6.0

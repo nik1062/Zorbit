@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FiStar } from 'react-icons/fi'
 import Button from './Button'
+import { api } from '../services/api'
 
 const initialReviews = [
   {
@@ -32,22 +33,19 @@ export default function ReviewSystem() {
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
-    const saved = localStorage.getItem('zorbit_reviews')
-    if (saved) {
-      try {
-        setReviews(JSON.parse(saved))
-      } catch (err) {
-        console.error('Error parsing reviews, resetting to default values', err)
-        localStorage.setItem('zorbit_reviews', JSON.stringify(initialReviews))
-        setReviews(initialReviews)
+    api.getReviews().then((data) => {
+      if (data.length > 0) {
+        setReviews(data)
+      } else {
+        // Initialize reviews with defaults
+        api.updateReviews(initialReviews).then((seeded) => {
+          setReviews(seeded)
+        })
       }
-    } else {
-      localStorage.setItem('zorbit_reviews', JSON.stringify(initialReviews))
-      setReviews(initialReviews)
-    }
+    })
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.name || !form.text) return
 
@@ -61,18 +59,7 @@ export default function ReviewSystem() {
       approved: false, // Starts as pending approval
     }
 
-    const currentSaved = localStorage.getItem('zorbit_reviews')
-    let currentReviews = reviews
-    if (currentSaved) {
-      try {
-        currentReviews = JSON.parse(currentSaved)
-      } catch (err) {
-        console.error('Error parsing current reviews on submit', err)
-      }
-    }
-    
-    const updated = [newReview, ...currentReviews]
-    localStorage.setItem('zorbit_reviews', JSON.stringify(updated))
+    const updated = await api.createReview(newReview)
     setReviews(updated)
     setForm({ name: '', company: '', text: '' })
     setRating(5)

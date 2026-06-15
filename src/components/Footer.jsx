@@ -24,10 +24,10 @@ export default function Footer() {
         {/* Info & Motto */}
         <div className="flex flex-col gap-3">
           <span className="font-display font-bold text-2xl tracking-tight">
-            Zor<span className="text-brand-blue">bit</span>
+            zorbit-<span className="text-brand-blue">studio</span>
           </span>
           <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-sm">
-            Zorbit bridges the gap between high-velocity sprints and exceptional engineering standards.
+            zorbit-studio bridges the gap between high-velocity sprints and exceptional engineering standards.
           </p>
           <div className="flex gap-4 mt-2">
             {socials.map(({ icon: Icon, href }, i) => (
@@ -79,7 +79,7 @@ export default function Footer() {
             <NavLink to="/contact" className="hover:text-white transition-colors">Contact</NavLink>
           </div>
           <p className="text-slate-300 text-xs md:text-sm font-medium mt-auto md:text-right">
-            &copy; {new Date().getFullYear()} Zorbit Studio. All rights reserved.
+            &copy; {new Date().getFullYear()} zorbit-studio. All rights reserved.
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter, FiClock, FiActivity, FiSliders, FiCheckCircle } from 'react-icons/fi'
 import PageWrapper from '../components/PageWrapper'
 import Button from '../components/Button'
+import { api } from '../services/api'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -146,11 +147,34 @@ export default function Contact() {
       `${briefDescription}\n\n` +
       `Here are my custom requirements:\n[Please edit this to tell us more about your project goals...]`
 
-    setForm((prev) => ({
-      ...prev,
-      project: projectString,
-      message: messageTemplate
-    }))
+    setForm((prev) => {
+      let finalMessage = messageTemplate
+      const currentMsg = prev.message.trim()
+      
+      if (currentMsg && !currentMsg.includes('SYSTEM ESTIMATE SUMMARY')) {
+        // If there's user input, insert it inside the custom requirements placeholder
+        finalMessage = messageTemplate.replace(
+          '[Please edit this to tell us more about your project goals...]',
+          currentMsg
+        )
+      } else if (currentMsg.includes('SYSTEM ESTIMATE SUMMARY')) {
+        // If estimate already exists, keep user text below 'Here are my custom requirements:'
+        const splitText = 'Here are my custom requirements:\n'
+        const splitIndex = currentMsg.indexOf(splitText)
+        if (splitIndex !== -1) {
+          const userRequirements = currentMsg.substring(splitIndex + splitText.length)
+          finalMessage = messageTemplate.replace(
+            '[Please edit this to tell us more about your project goals...]',
+            userRequirements.trim() || '[Please edit this to tell us more about your project goals...]'
+          )
+        }
+      }
+      return {
+        ...prev,
+        project: projectString,
+        message: finalMessage
+      }
+    })
 
     setBlueprintApplied(true)
     setTimeout(() => setBlueprintApplied(false), 3000)
@@ -159,17 +183,6 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    
-    // Save to localStorage safely so the admin dashboard can still show it
-    const saved = localStorage.getItem('zorbitLeads')
-    let leads = []
-    if (saved) {
-      try {
-        leads = JSON.parse(saved)
-      } catch (err) {
-        console.error('Error parsing stored zorbitLeads', err)
-      }
-    }
     
     const newLead = {
       id: Date.now(),
@@ -182,11 +195,10 @@ export default function Contact() {
       archived: false,
     }
     
-    const updatedLeads = [newLead, ...leads]
-    localStorage.setItem('zorbitLeads', JSON.stringify(updatedLeads))
-    localStorage.setItem('zorbit_contact_messages', JSON.stringify(updatedLeads))
+    // Delegate persistence and server endpoint checks to central API service
+    const result = await api.createLead(newLead)
 
-    // Open native mail client pre-filled with the message details to zorbitweb@gmail.com
+    // Open native mail client pre-filled with the message details to zorbitweb@gmail.com if sync failed
     const subject = encodeURIComponent(`Zorbit Inquest: ${form.project} from ${form.name}`)
     const body = encodeURIComponent(
       `Hello Zorbit Team,\n\n` +
@@ -201,37 +213,14 @@ export default function Contact() {
       `${form.name}`
     )
     
-    try {
-      // Attempt server-side fetch with low timeout (e.g. 5 seconds) to Zorbit's ingestion handler
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 5000)
-      
-      const response = await fetch('/api/leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newLead),
-        signal: controller.signal
-      })
-      
-      clearTimeout(timeoutId)
-
-      if (!response.ok) {
-        throw new Error(`Server status returned: ${response.status}`)
-      }
-
-      setSent(true)
-      setForm({ name: '', company: '', project: '', email: '', message: '' })
-    } catch (err) {
-      console.warn('Primary API endpoint unavailable, initiating mailto redirection fallback.', err)
-      // Fallback redirection to native mail client
+    if (!result.serverSynced) {
+      console.warn('Primary API endpoint unavailable, initiating mailto redirection fallback.')
       window.location.href = `mailto:zorbitweb@gmail.com?subject=${subject}&body=${body}`
-      setSent(true)
-      setForm({ name: '', company: '', project: '', email: '', message: '' })
-    } finally {
-      setLoading(false)
     }
+
+    setSent(true)
+    setForm({ name: '', company: '', project: '', email: '', message: '' })
+    setLoading(false)
   }
 
   return (

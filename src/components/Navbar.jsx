@@ -30,7 +30,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="font-display font-bold text-2xl tracking-tight text-white">
-          Zor<span className="text-brand-blue">bit</span>
+          zorbit-<span className="text-brand-blue">studio</span>
         </NavLink>
 
         {/* Desktop Nav */}

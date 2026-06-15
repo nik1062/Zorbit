@@ -53,8 +53,8 @@ export default function Services() {
           <h1 className="font-display text-4xl md:text-5xl font-bold mt-2">
             Services <span className="text-brand-blue">Providing</span>
           </h1>
-          <p className="text-white/30 line-through text-xs md:text-sm font-semibold uppercase tracking-wider mt-1.5 mb-6">
-            work showcase
+          <p className="text-brand-blue-light/50 text-xs md:text-sm font-semibold uppercase tracking-widest mt-1.5 mb-6 font-mono">
+            // active dev services registry
           </p>
           <p className="text-slate-300 font-medium text-lg md:text-xl leading-relaxed">
             We handle the full spectrum of high-end software development, mobile apps, platform management, and POS server architectures.
