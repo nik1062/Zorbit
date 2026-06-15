@@ -86,9 +86,6 @@ export default function SecurityLock({ onAuthorize }) {
           )}
         </AnimatePresence>
 
-        <div className="mt-8 border-t border-slate-800/60 pt-4 text-[10px] text-white/20 font-mono">
-          DEVELOPER BYPASS CODE: <code className="text-brand-blue-glow font-bold">zorbit_dev_2026</code>
-        </div>
       </motion.div>
     </div>
   )

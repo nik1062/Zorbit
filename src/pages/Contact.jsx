@@ -16,6 +16,7 @@ const fadeUp = {
 export default function Contact() {
   const [form, setForm] = useState({ name: '', company: '', project: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [blueprintApplied, setBlueprintApplied] = useState(false)
 
   // Estimator States
@@ -155,8 +156,9 @@ export default function Contact() {
     setTimeout(() => setBlueprintApplied(false), 3000)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     
     // Save to localStorage safely so the admin dashboard can still show it
     const saved = localStorage.getItem('zorbitLeads')
@@ -180,8 +182,9 @@ export default function Contact() {
       archived: false,
     }
     
-    localStorage.setItem('zorbitLeads', JSON.stringify([newLead, ...leads]))
-    localStorage.setItem('zorbit_contact_messages', JSON.stringify([newLead, ...leads]))
+    const updatedLeads = [newLead, ...leads]
+    localStorage.setItem('zorbitLeads', JSON.stringify(updatedLeads))
+    localStorage.setItem('zorbit_contact_messages', JSON.stringify(updatedLeads))
 
     // Open native mail client pre-filled with the message details to zorbitweb@gmail.com
     const subject = encodeURIComponent(`Zorbit Inquest: ${form.project} from ${form.name}`)
@@ -198,11 +201,37 @@ export default function Contact() {
       `${form.name}`
     )
     
-    // Triggering the mailto redirection
-    window.location.href = `mailto:zorbitweb@gmail.com?subject=${subject}&body=${body}`
+    try {
+      // Attempt server-side fetch with low timeout (e.g. 5 seconds) to Zorbit's ingestion handler
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 5000)
+      
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newLead),
+        signal: controller.signal
+      })
+      
+      clearTimeout(timeoutId)
 
-    setSent(true)
-    setForm({ name: '', company: '', project: '', email: '', message: '' })
+      if (!response.ok) {
+        throw new Error(`Server status returned: ${response.status}`)
+      }
+
+      setSent(true)
+      setForm({ name: '', company: '', project: '', email: '', message: '' })
+    } catch (err) {
+      console.warn('Primary API endpoint unavailable, initiating mailto redirection fallback.', err)
+      // Fallback redirection to native mail client
+      window.location.href = `mailto:zorbitweb@gmail.com?subject=${subject}&body=${body}`
+      setSent(true)
+      setForm({ name: '', company: '', project: '', email: '', message: '' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -504,8 +533,21 @@ export default function Contact() {
                 </div>
 
                 <div className="flex justify-end">
-                  <Button type="submit" variant="primary" className="py-3 px-6 text-xs uppercase tracking-wider font-bold">
-                    Transmit Packet <FiSend size={12} />
+                  <Button 
+                    type="submit" 
+                    variant="primary" 
+                    disabled={loading}
+                    className={`py-3 px-6 text-xs uppercase tracking-wider font-bold ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    {loading ? (
+                      <>
+                        Transmitting... <span className="inline-block w-3 h-3 rounded-full border-2 border-white border-t-transparent animate-spin ml-1" />
+                      </>
+                    ) : (
+                      <>
+                        Transmit Packet <FiSend size={12} />
+                      </>
+                    )}
                   </Button>
                 </div>
               </form>
