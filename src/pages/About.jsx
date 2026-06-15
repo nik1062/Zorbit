@@ -119,13 +119,16 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="p-6 md:p-8 rounded-3xl bg-brand-dark-2/40 border border-slate-800/80 hover:border-brand-blue/30 hover:glow-blue transition-all duration-300 flex flex-col gap-4"
+              className="border-beam-container rounded-3xl bg-brand-dark-2/40 group"
             >
-              <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center border border-brand-blue/10 text-brand-blue-glow">
-                <v.icon size={20} />
+              <div className="border-beam-effect" />
+              <div className="border-beam-content p-6 md:p-8 bg-brand-dark-2/95 rounded-3xl flex flex-col gap-4 h-full w-full">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center border border-brand-blue/10 text-brand-blue-glow shrink-0">
+                  <v.icon size={20} />
+                </div>
+                <h3 className="font-display font-bold text-lg text-white">{v.title}</h3>
+                <p className="text-slate-350 text-sm md:text-base leading-relaxed">{v.desc}</p>
               </div>
-              <h3 className="font-display font-bold text-lg text-white">{v.title}</h3>
-              <p className="text-slate-350 text-sm md:text-base leading-relaxed">{v.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -184,48 +187,51 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-6 md:p-8 rounded-3xl bg-[#090C15]/80 border border-slate-800/80 backdrop-blur-md overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.02)] flex flex-col font-mono text-xs text-left"
+                className="border-beam-container rounded-3xl bg-[#090C15]/80 group"
               >
-                {/* Header HUD */}
-                <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-5 text-white/45">
-                  <div className="flex items-center gap-2">
-                    <FiTerminal className="text-brand-blue-glow" size={13} />
-                    <span className="text-[10px] tracking-wider uppercase font-semibold text-white/70">
-                      {member.nodeId}
+                <div className="border-beam-effect" />
+                <div className="border-beam-content p-6 md:p-8 bg-[#090C15]/95 rounded-3xl flex flex-col font-mono text-xs text-left h-full w-full">
+                  {/* Header HUD */}
+                  <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-5 text-white/45">
+                    <div className="flex items-center gap-2">
+                      <FiTerminal className="text-brand-blue-glow" size={13} />
+                      <span className="text-[10px] tracking-wider uppercase font-semibold text-white/70">
+                        {member.nodeId}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-emerald-400 font-mono font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                      STATUS: ACTIVE
                     </span>
                   </div>
-                  <span className="text-[10px] text-emerald-400 font-mono font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                    STATUS: ACTIVE
-                  </span>
-                </div>
 
-                {/* Profile Details */}
-                <h3 className="font-display text-lg font-bold text-white tracking-tight font-sans">
-                  {member.name}
-                </h3>
-                <p className="text-brand-blue-light text-xs font-semibold mt-1 font-sans">
-                  {member.role}
-                </p>
+                  {/* Profile Details */}
+                  <h3 className="font-display text-lg font-bold text-white tracking-tight font-sans">
+                    {member.name}
+                  </h3>
+                  <p className="text-brand-blue-light text-xs font-semibold mt-1 font-sans">
+                    {member.role}
+                  </p>
 
-                <p className="text-slate-300 font-sans text-xs md:text-sm mt-4 leading-relaxed mb-6">
-                  {member.bio}
-                </p>
+                  <p className="text-slate-300 font-sans text-xs md:text-sm mt-4 leading-relaxed mb-6">
+                    {member.bio}
+                  </p>
 
-                {/* Tech Stacks */}
-                <div className="mt-auto pt-4 border-t border-slate-800/60 flex flex-col gap-3">
-                  <div className="flex justify-between text-[10px] text-white/30 font-semibold uppercase tracking-wider font-mono">
-                    <span>Core Technologies</span>
-                    <span>{member.commits}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {member.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 rounded-lg bg-brand-dark-3 text-slate-350 text-[11px] font-mono tracking-wide border border-white/5"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                  {/* Tech Stacks */}
+                  <div className="mt-auto pt-4 border-t border-slate-800/60 flex flex-col gap-3">
+                    <div className="flex justify-between text-[10px] text-white/30 font-semibold uppercase tracking-wider font-mono">
+                      <span>Core Technologies</span>
+                      <span>{member.commits}</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {member.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2.5 py-1 rounded-lg bg-brand-dark-3 text-slate-350 text-[11px] font-mono tracking-wide border border-white/5"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>

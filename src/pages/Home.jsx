@@ -304,13 +304,16 @@ export default function Home() {
               whileInView="show"
               viewport={{ once: true }}
               custom={i}
-              className="p-6 rounded-2xl bg-brand-dark-2 border border-white/5 hover:border-brand-blue/30 hover:glow-blue transition-all duration-300 group"
+              className="border-beam-container rounded-2xl bg-brand-dark-2 group"
             >
-              <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-4 group-hover:bg-brand-blue/20 transition-colors">
-                <Icon size={22} className="text-brand-blue-light" />
+              <div className="border-beam-effect" />
+              <div className="border-beam-content p-6 bg-brand-dark-2/95 rounded-2xl flex flex-col h-full w-full">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-4 group-hover:bg-brand-blue/20 transition-colors border border-brand-blue/10 shrink-0">
+                  <Icon size={22} className="text-brand-blue-light" />
+                </div>
+                <h3 className="font-display font-semibold text-lg mb-2 text-white">{title}</h3>
+                <p className="text-slate-300 text-sm md:text-base leading-relaxed">{desc}</p>
               </div>
-              <h3 className="font-display font-semibold text-lg mb-2">{title}</h3>
-              <p className="text-slate-300 text-sm md:text-base leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </div>

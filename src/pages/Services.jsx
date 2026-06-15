@@ -73,28 +73,31 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="p-6 md:p-8 rounded-3xl bg-brand-dark-2/40 border border-slate-800/80 hover:border-brand-blue/30 hover:glow-blue transition-all duration-300 flex flex-col justify-between group"
+                className="border-beam-container rounded-3xl bg-brand-dark-2/40 group"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-5 group-hover:bg-brand-blue/20 transition-colors border border-brand-blue/10">
-                    <Icon size={20} className="text-brand-blue-light" />
+                <div className="border-beam-effect" />
+                <div className="border-beam-content p-6 md:p-8 bg-brand-dark-2/95 rounded-3xl flex flex-col justify-between h-full w-full">
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center mb-5 group-hover:bg-brand-blue/20 transition-colors border border-brand-blue/10">
+                      <Icon size={20} className="text-brand-blue-light" />
+                    </div>
+                    <h3 className="font-display font-bold text-lg md:text-xl text-white group-hover:text-brand-blue-glow transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm md:text-base leading-relaxed mt-2">
+                      {service.desc}
+                    </p>
                   </div>
-                  <h3 className="font-display font-bold text-lg md:text-xl text-white group-hover:text-brand-blue-glow transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-300 text-sm md:text-base leading-relaxed mt-2">
-                    {service.desc}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-slate-800/60">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-md bg-brand-dark-3 text-slate-300 text-xs md:text-sm font-mono tracking-wide border border-white/5"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-slate-800/60">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md bg-brand-dark-3 text-slate-300 text-xs md:text-sm font-mono tracking-wide border border-white/5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             )
