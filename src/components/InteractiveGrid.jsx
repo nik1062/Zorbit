@@ -59,7 +59,7 @@ export default function InteractiveGrid() {
     const cellSize = 50 // Grid size in pixels
 
     // Render loop
-    const animate = () => {
+    function animate() {
       if (mouse.x === null || mouse.y === null) {
         drawStaticGrid()
         animationActive = false
