@@ -5,6 +5,7 @@ import { HiMenuAlt3, HiX } from 'react-icons/hi'
 
 const links = [
   { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
   { to: '/services', label: 'Services' },
   { to: '/work', label: 'Work' },
   { to: '/contact', label: 'Contact' },

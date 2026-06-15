@@ -73,6 +73,7 @@ export default function Footer() {
         <div className="flex flex-col gap-4 md:items-end justify-between h-full">
           <div className="flex flex-wrap gap-6 text-slate-300 text-sm md:text-base font-semibold">
             <NavLink to="/" className="hover:text-white transition-colors">Home</NavLink>
+            <NavLink to="/about" className="hover:text-white transition-colors">About</NavLink>
             <NavLink to="/services" className="hover:text-white transition-colors">Services</NavLink>
             <NavLink to="/work" className="hover:text-white transition-colors">Work</NavLink>
             <NavLink to="/contact" className="hover:text-white transition-colors">Contact</NavLink>
