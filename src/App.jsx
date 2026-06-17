@@ -29,13 +29,14 @@ function LoadingSpinner() {
 
 export default function App() {
   const location = useLocation()
+  const isDemo = location.pathname.startsWith('/demo')
 
   return (
     <div className="min-h-screen bg-brand-dark flex flex-col relative selection:bg-brand-blue selection:text-white">
       {/* Custom magnetic cursor */}
-      <CustomCursor />
+      {!isDemo && <CustomCursor />}
 
-      <Navbar />
+      {!isDemo && <Navbar />}
       <main className="flex-1">
         <Suspense fallback={<LoadingSpinner />}>
           <AnimatePresence mode="wait">
@@ -51,7 +52,7 @@ export default function App() {
           </AnimatePresence>
         </Suspense>
       </main>
-      <Footer />
+      {!isDemo && <Footer />}
     </div>
   )
 }
