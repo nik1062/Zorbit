@@ -34,7 +34,7 @@ export default function App() {
     <div className="min-h-screen bg-brand-dark flex flex-col relative selection:bg-brand-blue selection:text-white">
       {/* Custom magnetic cursor */}
       <CustomCursor />
-      
+
       <Navbar />
       <main className="flex-1">
         <Suspense fallback={<LoadingSpinner />}>
@@ -46,6 +46,7 @@ export default function App() {
               <Route path="/work" element={<Work />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin/messages" element={<AdminDashboard />} />
+              <Route path="/demo/fast-laptop" element={<FastLaptopMockup />} />
             </Routes>
           </AnimatePresence>
         </Suspense>
