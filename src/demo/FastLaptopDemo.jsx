@@ -55,22 +55,23 @@ export default function FastLaptopMockup() {
   const [selectedLandmark, setSelectedLandmark] = useState('Bhagalpur Junction');
   const [landmarkDistance, setLandmarkDistance] = useState('1.2 km (approx. 5 mins drive via MG Road)');
 
-  // Simulated live terminal output for home page
+  // Simulated live hardware diagnostics console for home page
   const [terminalLogs, setTerminalLogs] = useState([
-    'Initializing hardware diagnosis matrix...',
-    'Fetching Google Reviews API status: 1,020+ nodes found.',
-    'System status: ONLINE'
+    'System initialization: Fast Diagnostics v1.4',
+    'Checking power rails: 3.3V G3Hot ... [ OK ]',
+    'Analyzing charging circuit: U7000 IC ... [ ACTIVE ]'
   ]);
 
   useEffect(() => {
     if (activeTab !== 'home') return;
     
     const logs = [
-      'Scanning local hardware queues...',
-      'Queue status: 2 devices staged for mother-board reflow.',
-      'SLA metric verified: 99.2% recovery rate active.',
-      'IC micro-soldering temperature calibrating at 380°C...',
-      'Technician matrix: Ready.'
+      'PPBUS_G3H voltage line: 12.6V ... [ STABLE ]',
+      'CPU thermal sensor scan: 42°C ... [ NORMAL ]',
+      'Checking BIOS SPI ROM partition checksum ... [ PASS ]',
+      'Testing motherboard RAM cells ... [ 100% STAGED ]',
+      'SSD storage read/write lifecycle ... [ SECURE ]',
+      'Motherboard diagnostics complete. System status: Ready.'
     ];
 
     let timer;
@@ -171,7 +172,7 @@ export default function FastLaptopMockup() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => setActiveTab('home')}>
             <div className="w-8 h-8 rounded-full bg-slate-950 flex items-center justify-center border border-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
-              <span className="text-white font-bold text-sm tracking-tighter">Z</span>
+              <FiCpu className="text-emerald-400 w-4 h-4" />
             </div>
             <div className="leading-tight">
               <span className="font-black text-sm tracking-wider text-white block">
@@ -312,7 +313,7 @@ export default function FastLaptopMockup() {
                     </span>
                   </div>
                   <div className="space-y-2 font-mono text-xs text-slate-400 min-h-[140px]">
-                    <p className="text-slate-600"># Zorbit SSG Platform Terminal v2.1</p>
+                    <p className="text-slate-600"># Component-Level Diagnostics Terminal</p>
                     {terminalLogs.map((log, idx) => (
                       <motion.p 
                         key={idx} 
@@ -882,7 +883,7 @@ export default function FastLaptopMockup() {
         <p className="text-slate-500 font-mono text-[10px]">
           C.S. Compound, MG Road, In Front of Royal Darbar, Bhikhanpur, Bhagalpur, Bihar 812001
         </p>
-        <p>&copy; 2026 Fast Laptop Solution. Engineered via React Serverless Stack by Zorbit Studio.</p>
+        <p>&copy; 2026 Fast Laptop Solution. All rights reserved.</p>
       </footer>
 
     </div>
