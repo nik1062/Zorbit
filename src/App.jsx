@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
+import FastLaptopMockup from './demo/FastLaptopDemo';
 
 // Lazy loaded page modules for code-splitting
 const Home = lazy(() => import('./pages/Home'))
