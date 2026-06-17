@@ -19,7 +19,8 @@ async function run() {
     '/services',
     '/work',
     '/contact',
-    '/admin/messages'
+    '/admin/messages',
+    '/demo/fast-laptop'
   ]
 
   console.log('[Zorbit SSG Engine] Initiating flat HTML pre-render script...')

@@ -105,7 +105,7 @@ export default function FastLaptopMockup() {
                   {srv.icon}
                 </div>
                 <h3 className="font-bold text-base text-white normal-case tracking-normal mb-1">{srv.title}</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">{srv.desc}</p>
+                <p className="text-xs text-slate-400 leading-relaxed">{srv.desc}</p>
               </div>
             ))}
           </div>
