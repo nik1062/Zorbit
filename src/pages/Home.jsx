@@ -22,6 +22,7 @@ import InteractiveGrid from '../components/InteractiveGrid'
 import DevConsoleWidget from '../components/DevConsoleWidget'
 import TechMarquee from '../components/TechMarquee'
 import SpeedBenchmark from '../components/SpeedBenchmark'
+import SprintEstimator from '../components/SprintEstimator'
 
 const stats = [
   { value: '5 Days', label: 'Average Web MVP Sprint' },
@@ -178,6 +179,11 @@ export default function Home() {
         <SpeedBenchmark />
       </section>
 
+      {/* Interactive Sprint Estimator */}
+      <section className="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <SprintEstimator />
+      </section>
+
       {/* SOCIAL PROOF: Trusted partners & Client nodes */}
       <section className="py-20 border-b border-white/5 bg-[#05070B] relative">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-10">
@@ -192,28 +198,39 @@ export default function Home() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
             {[
-              { name: 'METRO MIRCHI', industry: 'Food & Hospitality' },
-              { name: 'TN-GEOGUARD', industry: 'Government GIS' },
-              { name: 'FAST LAPTOP', industry: 'Hardware Repair' },
-              { name: 'CAMPUS LIBRARY', industry: 'Academic SaaS' },
-              { name: 'FINVAULT', industry: 'Secure Fintech' },
-              { name: 'FURNISHKART', industry: 'Retail E-Commerce' }
+              { name: 'METRO MIRCHI', industry: 'Food & Hospitality', to: '/work' },
+              { name: 'TN-GEOGUARD', industry: 'Government GIS', to: '/work' },
+              { name: 'FAST LAPTOP', industry: 'Hardware Repair', to: '/demo/fast-laptop' },
+              { name: 'CAMPUS LIBRARY', industry: 'Academic SaaS', to: '/work' },
+              { name: 'FINVAULT', industry: 'Secure Fintech', to: '/work' },
+              { name: 'FURNISHKART', industry: 'Retail E-Commerce', to: '/work' }
             ].map((partner, idx) => (
-              <motion.div
+              <Link
                 key={partner.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05, type: 'spring' }}
-                className="p-5 rounded-2xl bg-brand-dark-2/40 border border-slate-900 flex flex-col items-center justify-center min-h-[90px] group hover:border-brand-blue/20 transition-all hover:bg-brand-dark-3/60 cursor-pointer"
+                to={partner.to}
+                target={partner.name === 'FAST LAPTOP' ? '_blank' : undefined}
+                className="block h-full"
               >
-                <span className="font-display font-black text-xs md:text-sm text-white/40 group-hover:text-brand-blue-glow transition-all tracking-wider">
-                  {partner.name}
-                </span>
-                <span className="text-[8px] text-white/20 uppercase font-mono tracking-widest mt-1.5 block">
-                  {partner.industry}
-                </span>
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05, type: 'spring' }}
+                  className="p-5 rounded-2xl bg-brand-dark-2/40 border border-slate-900 flex flex-col items-center justify-center min-h-[95px] h-full group hover:border-brand-blue/25 transition-all hover:bg-brand-dark-3/60 cursor-pointer relative overflow-hidden"
+                >
+                  {partner.name === 'FAST LAPTOP' && (
+                    <span className="absolute top-2 right-2 text-[7px] font-bold font-mono text-cyan-400 bg-cyan-950/50 border border-cyan-500/30 px-1.5 py-0.5 rounded uppercase tracking-wider animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.25)]">
+                      Live Demo
+                    </span>
+                  )}
+                  <span className="font-display font-black text-xs md:text-sm text-white/40 group-hover:text-brand-blue-glow transition-all tracking-wider">
+                    {partner.name}
+                  </span>
+                  <span className="text-[8px] text-white/20 uppercase font-mono tracking-widest mt-1.5 block">
+                    {partner.industry}
+                  </span>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

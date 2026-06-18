@@ -275,11 +275,20 @@ export default function Work() {
                   </div>
                 </div>
 
-                <Link to="/contact" className="w-full sm:w-auto mt-2 sm:mt-0" onClick={() => setSelectedProject(null)}>
-                  <Button variant="primary" className="py-2.5 text-xs w-full justify-center">
-                    Initiate Sprint <FiArrowRight size={12} />
-                  </Button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-2 sm:mt-0">
+                  {selectedProject.id === 'fast-laptop' && (
+                    <Link to="/demo/fast-laptop" target="_blank" className="w-full sm:w-auto">
+                      <Button variant="outline" className="py-2.5 text-xs w-full justify-center border-brand-blue/30 text-brand-blue-glow hover:bg-brand-blue/10">
+                        Launch Live Sandbox
+                      </Button>
+                    </Link>
+                  )}
+                  <Link to="/contact" className="w-full sm:w-auto" onClick={() => setSelectedProject(null)}>
+                    <Button variant="primary" className="py-2.5 text-xs w-full justify-center">
+                      Initiate Sprint <FiArrowRight size={12} />
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </motion.div>

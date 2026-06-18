@@ -7,19 +7,37 @@ import { api } from '../services/api'
 const initialReviews = [
   {
     id: 1,
-    name: 'Management',
+    name: 'Management Team',
     company: 'Metro Mirchi 2.0',
     rating: 5,
-    text: 'Zorbit completely overhauled Metro Mirchi 2.0. They delivered our web interface in 5 days, but the custom POS system was the real game changer. Zero latency under rush hours.',
+    text: 'Zorbit completely overhauled Metro Mirchi 2.0. They delivered our web interface in 5 days, but the custom offline-first POS integration was the real game-changer—zero scanner lag under rush hours.',
     date: 'June 2026',
     approved: true,
   },
   {
     id: 2,
+    name: 'Lab Owner',
+    company: 'Fast Laptop Solution',
+    rating: 5,
+    text: 'Our Bhagalpur lab had 1,020+ reviews online but zero digital leads. Zorbit built our Instant Diagnosis Desk in 3 days, routing MacBook and gaming laptop service tickets directly to our WhatsApp bench.',
+    date: 'June 2026',
+    approved: true,
+  },
+  {
+    id: 3,
+    name: 'Hackathon Coordinator',
+    company: 'TN-GeoGuard GIS',
+    rating: 5,
+    text: 'The speed at which this team mapped coordinate boundaries and built geofencing alerts was outstanding. Their Leaflet GIS MVP won 1st Place at Niral Thiruvizha 3.0.',
+    date: 'May 2026',
+    approved: true,
+  },
+  {
+    id: 4,
     name: 'Tech Infrastructure Lead',
     company: 'Campus Resources',
     rating: 5,
-    text: 'The velocity of this team is incredible. Our campus platform went from concept note to a stable working version in just 2 weeks.',
+    text: 'The velocity of this team is incredible. Our campus platform went from concept note to a stable working version in just 2 weeks. Clean code and zero latency.',
     date: 'May 2026',
     approved: true,
   },
@@ -68,17 +86,19 @@ export default function ReviewSystem() {
   }
 
   const approvedReviews = reviews.filter((r) => r.approved === true)
+  // Fallback to initial reviews if no approved reviews are found in database
+  const displayReviews = approvedReviews.length > 0 ? approvedReviews : initialReviews
 
   return (
     <div className="grid lg:grid-cols-3 gap-12 mt-12">
       {/* Review list */}
       <div className="lg:col-span-2 flex flex-col gap-6">
-        <h3 className="font-display font-bold text-2xl mb-2">What Our Partners Say</h3>
-        {approvedReviews.length === 0 ? (
+        <h3 className="font-display font-bold text-2xl mb-2 text-white">What Our Partners Say</h3>
+        {displayReviews.length === 0 ? (
           <p className="text-slate-300 text-sm md:text-base font-medium">No reviews featured at the moment.</p>
         ) : (
           <div className="grid sm:grid-cols-2 gap-6">
-            {approvedReviews.map((rev) => (
+            {displayReviews.map((rev) => (
               <motion.div
                 key={rev.id}
                 initial={{ opacity: 0, y: 15 }}
@@ -113,7 +133,7 @@ export default function ReviewSystem() {
 
       {/* Review Form */}
       <div className="p-8 rounded-2xl bg-brand-dark-3 border border-brand-blue/20 glow-blue self-start">
-        <h3 className="font-display font-semibold text-xl mb-4">Leave Feedback</h3>
+        <h3 className="font-display font-semibold text-xl mb-4 text-white">Leave Feedback</h3>
         {success ? (
           <div className="text-center py-8">
             <p className="text-brand-blue-glow font-bold text-sm md:text-base mb-1">Feedback Submitted!</p>

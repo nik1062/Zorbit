@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
+import Logo from './Logo'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -29,8 +30,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="font-display font-bold text-2xl tracking-tight text-white">
-          zorbit-<span className="text-brand-blue">studio</span>
+        <NavLink to="/" className="flex items-center gap-2 font-display font-bold text-2xl tracking-tight text-white group">
+          <Logo variant="orbit-z" className="w-7 h-7 shrink-0 transition-transform group-hover:scale-105" />
+          <span>zorbit-<span className="text-brand-blue">studio</span></span>
         </NavLink>
 
         {/* Desktop Nav */}

@@ -187,7 +187,7 @@ export default async function handler(req, res) {
       
       <div class="footer">
         &copy; ${new Date().getFullYear()} zorbit-studio. All rights reserved.<br>
-        Chennai, Tamil Nadu, India
+        Bhagalpur, Bihar, India
       </div>
     </div>
   </body>

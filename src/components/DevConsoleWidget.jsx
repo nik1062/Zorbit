@@ -38,7 +38,7 @@ export default function DevConsoleWidget() {
         { text: '{', type: 'json' },
         { text: '  "agency": "Zorbit Creative Studio",', type: 'json' },
         { text: '  "motto": "Velocity meets High Engineering Standards",', type: 'json' },
-        { text: '  "location": "Chennai, Tamil Nadu, India",', type: 'json' },
+        { text: '  "location": "Bhagalpur, Bihar, India",', type: 'json' },
         { text: '  "status": "Available Q2 2026"', type: 'json' },
         { text: '}', type: 'json' }
       ])

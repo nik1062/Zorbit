@@ -2,7 +2,7 @@
 
 ![zorbit-studio Platform Overview](./Screenshot%202026-06-15%20155654.png)
 
-An elite full-stack creative software engineering studio based in Chennai, India. Specializing in high-performance React/Next.js frontends, cross-platform Flutter/React Native mobile applications, robust platform management pipelines, and offline-first Point of Sale billing systems with sub-15ms sync speeds.
+An elite full-stack creative software engineering studio based in Bhagalpur, Bihar, India. Specializing in high-performance React/Next.js frontends, cross-platform Flutter/React Native mobile applications, robust platform management pipelines, and offline-first Point of Sale billing systems with sub-15ms sync speeds.
 
 ---
 
@@ -63,4 +63,4 @@ npm run build
 ## 📬 Contact & Sprint inquiries
 For queries, contact our sprint coordination center:
 * **Email**: zorbitweb@gmail.com
-* **Location**: Chennai, Tamil Nadu, India
+* **Location**: Bhagalpur, Bihar, India

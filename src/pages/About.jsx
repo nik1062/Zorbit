@@ -70,7 +70,7 @@ const timeline = [
   {
     year: '2026',
     title: 'Core Agency Launch',
-    desc: 'Organized Zorbit Creative Studio in Chennai, India, offering modular website building, mobile apps, and platform management.',
+    desc: 'Organized Zorbit Creative Studio in Bhagalpur, Bihar, India, offering modular website building, mobile apps, and platform management.',
   },
 ]
 
@@ -146,7 +146,7 @@ export default function About() {
           <div className="lg:col-span-7 relative border-l-2 border-slate-800 ml-4 pl-8 py-4 flex flex-col gap-12 w-full">
             {timeline.map((item, idx) => (
               <motion.div
-                key={item.year}
+                key={`${item.year}-${idx}`}
                 initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

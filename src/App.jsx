@@ -1,10 +1,11 @@
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import LoadingIntro from './components/LoadingIntro'
+import WhatsAppFloat from './components/WhatsAppFloat'
 import FastLaptopMockup from './demo/FastLaptopDemo';
 
 // Lazy loaded page modules for code-splitting
@@ -33,6 +34,11 @@ export default function App() {
   const isDemo = location.pathname.startsWith('/demo')
   const [showIntro, setShowIntro] = useState(!isDemo)
 
+  // Scroll to top on route change to prevent pages starting scrolled to the bottom
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   return (
     <div className="min-h-screen bg-brand-dark flex flex-col relative selection:bg-brand-blue selection:text-white">
       {/* Intro Loading Screen */}
@@ -45,6 +51,9 @@ export default function App() {
       {/* Custom magnetic cursor */}
       {!isDemo && !showIntro && <CustomCursor />}
 
+      {/* Floating WhatsApp chat widget */}
+      {!isDemo && !showIntro && <WhatsAppFloat />}
+
       {!isDemo && !showIntro && <Navbar />}
       <main className="flex-1">
         <Suspense fallback={<LoadingSpinner />}>
@@ -55,6 +64,7 @@ export default function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/work" element={<Work />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/messages" element={<AdminDashboard />} />
               <Route path="/demo/fast-laptop" element={<FastLaptopMockup />} />
             </Routes>

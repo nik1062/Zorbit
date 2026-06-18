@@ -19,6 +19,7 @@ async function run() {
     '/services',
     '/work',
     '/contact',
+    '/admin',
     '/admin/messages',
     '/demo/fast-laptop'
   ]

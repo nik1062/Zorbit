@@ -40,7 +40,7 @@ export default function MessageRow({ messages = [], onUpdateMessages }) {
   const getMailtoLink = (msg) => {
     const subject = encodeURIComponent('Zorbit Studio — Onboarding Discussion')
     const body = encodeURIComponent(
-      `Hi ${msg.name},\n\nThank you for reaching out to Zorbit Creative Studio.\n\nWe received your inquiry regarding "${msg.project || 'General Development'}" with the following project brief:\n\n"${msg.message}"\n\nOur engineering sprint team would love to set up a quick 15-minute call to align on technical specs and estimate timelines.\n\nLet us know your availability.\n\nBest regards,\nZorbit Engineering Team\nChennai, Tamil Nadu, India`
+      `Hi ${msg.name},\n\nThank you for reaching out to Zorbit Creative Studio.\n\nWe received your inquiry regarding "${msg.project || 'General Development'}" with the following project brief:\n\n"${msg.message}"\n\nOur engineering sprint team would love to set up a quick 15-minute call to align on technical specs and estimate timelines.\n\nLet us know your availability.\n\nBest regards,\nZorbit Engineering Team\nBhagalpur, Bihar, India`
     )
     return `mailto:${msg.email}?subject=${subject}&body=${body}`
   }

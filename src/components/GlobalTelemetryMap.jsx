@@ -132,7 +132,7 @@ export default function GlobalTelemetryMap() {
             LDN_NODE <span className="text-cyan-400 font-bold">{pings.london}ms</span>
           </div>
           <div className="absolute top-[138px] left-[328px] text-[9px] font-bold font-mono text-white/50 bg-[#05070B]/85 border border-slate-800 px-1.5 py-0.5 rounded backdrop-blur">
-            MAA_NODE (HQ) <span className="text-violet-400 font-bold">{pings.chennai}ms</span>
+            BGP_NODE (HQ) <span className="text-violet-400 font-bold">{pings.chennai}ms</span>
           </div>
         </div>
       </div>

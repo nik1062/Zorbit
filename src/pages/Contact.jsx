@@ -420,7 +420,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-slate-300 text-xs font-bold uppercase tracking-wide mb-0.5">Location</p>
-                  <p className="text-white text-sm font-semibold">Chennai, Tamil Nadu, India</p>
+                  <p className="text-white text-sm font-semibold">Bhagalpur, Bihar, India</p>
                 </div>
               </div>
             </div>
