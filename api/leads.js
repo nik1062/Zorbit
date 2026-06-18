@@ -196,27 +196,9 @@ export default async function handler(req, res) {
 
   if (resendKey) {
     try {
-      // 1. Send receipt email to the Client
-      const clientRes = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${resendKey}`
-        },
-        body: JSON.stringify({
-          from: 'Zorbit Studio <sprints@zorbit.studio>',
-          to: email,
-          subject: `zorbit-studio: Project Inquest Logged [${project}]`,
-          html: emailHtml
-        })
-      })
-
-      if (!clientRes.ok) {
-        const errorText = await clientRes.text()
-        console.error(`[Resend Error] Client Receipt API call failed (HTTP ${clientRes.status}):`, errorText)
-      }
-
-      // 2. Notify Zorbit Studio Admins
+      console.log(`[Resend Sandbox] Dispatching admin notification alert from onboarding@resend.dev to ${recipientEmail}...`)
+      
+      // Notify Zorbit Studio Admins (Uses free sandbox onboarding domain)
       const adminRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -224,21 +206,29 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${resendKey}`
         },
         body: JSON.stringify({
-          from: 'Zorbit Studio Telemetry <alerts@zorbit.studio>',
+          from: 'Zorbit Studio Telemetry <onboarding@resend.dev>',
           to: recipientEmail,
           subject: `Telemetry Alert: New Inquest from ${name} [${company || 'Personal'}]`,
-          html: `<h3>New Lead Logged</h3><p>Name: ${name}</p><p>Email: ${email}</p><p>Focus: ${project}</p><p>Message: ${message}</p>`
+          html: `
+            <h3>New Lead Logged in Workspace</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Project Focus:</strong> ${project}</p>
+            <p><strong>Message:</strong> ${message}</p>
+            <p><em>This notification is sent via Resend's free onboarding sandbox.</em></p>
+          `
         })
       })
 
       if (!adminRes.ok) {
         const errorText = await adminRes.text()
-        console.error(`[Resend Error] Admin Notification API call failed (HTTP ${adminRes.status}):`, errorText)
+        console.error(`[Resend Sandbox Error] Admin notification failed (HTTP ${adminRes.status}):`, errorText)
       } else {
+        console.log('[Resend Sandbox] Email notification successfully delivered.')
         emailSuccess = true
       }
     } catch (emailErr) {
-      console.error('Resend background email dispatch encountered an exception:', emailErr)
+      console.error('[Resend Sandbox Exception] Failed to dispatch email:', emailErr)
     }
   }
 
