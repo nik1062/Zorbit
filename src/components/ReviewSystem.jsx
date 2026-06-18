@@ -26,7 +26,7 @@ const initialReviews = [
 ]
 
 export default function ReviewSystem() {
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState(initialReviews)
   const [form, setForm] = useState({ name: '', company: '', text: '' })
   const [rating, setRating] = useState(5)
   const [hoverRating, setHoverRating] = useState(null)

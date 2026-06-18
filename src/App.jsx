@@ -1,9 +1,10 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
+import LoadingIntro from './components/LoadingIntro'
 import FastLaptopMockup from './demo/FastLaptopDemo';
 
 // Lazy loaded page modules for code-splitting
@@ -30,13 +31,21 @@ function LoadingSpinner() {
 export default function App() {
   const location = useLocation()
   const isDemo = location.pathname.startsWith('/demo')
+  const [showIntro, setShowIntro] = useState(!isDemo)
 
   return (
     <div className="min-h-screen bg-brand-dark flex flex-col relative selection:bg-brand-blue selection:text-white">
-      {/* Custom magnetic cursor */}
-      {!isDemo && <CustomCursor />}
+      {/* Intro Loading Screen */}
+      <AnimatePresence>
+        {showIntro && !isDemo && (
+          <LoadingIntro onComplete={() => setShowIntro(false)} />
+        )}
+      </AnimatePresence>
 
-      {!isDemo && <Navbar />}
+      {/* Custom magnetic cursor */}
+      {!isDemo && !showIntro && <CustomCursor />}
+
+      {!isDemo && !showIntro && <Navbar />}
       <main className="flex-1">
         <Suspense fallback={<LoadingSpinner />}>
           <AnimatePresence mode="wait">
@@ -52,7 +61,7 @@ export default function App() {
           </AnimatePresence>
         </Suspense>
       </main>
-      {!isDemo && <Footer />}
+      {!isDemo && !showIntro && <Footer />}
     </div>
   )
 }

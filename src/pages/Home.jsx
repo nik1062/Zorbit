@@ -1,13 +1,27 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiArrowRight } from 'react-icons/hi'
-import { FiCode, FiLayers, FiActivity, FiClock, FiCpu, FiGitBranch, FiGitPullRequest, FiSmartphone, FiSliders, FiServer } from 'react-icons/fi'
+import { 
+  FiCode, 
+  FiActivity, 
+  FiClock, 
+  FiCpu, 
+  FiGitBranch, 
+  FiGitPullRequest, 
+  FiSliders, 
+  FiServer,
+  FiAward,
+  FiShield,
+  FiZap,
+  FiCheck
+} from 'react-icons/fi'
 import PageWrapper from '../components/PageWrapper'
 import Button from '../components/Button'
 import ReviewSystem from '../components/ReviewSystem'
 import InteractiveGrid from '../components/InteractiveGrid'
 import DevConsoleWidget from '../components/DevConsoleWidget'
 import TechMarquee from '../components/TechMarquee'
+import SpeedBenchmark from '../components/SpeedBenchmark'
 
 const stats = [
   { value: '5 Days', label: 'Average Web MVP Sprint' },
@@ -41,13 +55,33 @@ const sprints = [
   { name: 'Smart Library Platform', days: '14 Days', progress: '95%', color: 'bg-violet-500 shadow-[0_0_8px_#8B5CF6]' },
 ]
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: (i = 0) => ({
+// Advanced, smooth stagger animations for Awwwards feel
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' },
-  }),
+    transition: { type: 'spring', damping: 25, stiffness: 180, mass: 0.5 }
+  }
+}
+
+const scaleVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
 }
 
 export default function Home() {
@@ -59,65 +93,60 @@ export default function Home() {
         <InteractiveGrid />
 
         {/* Background glow effects */}
-        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-brand-blue/5 blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[250px] h-[250px] rounded-full bg-brand-blue-glow/5 blur-[90px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-[350px] h-[350px] rounded-full bg-brand-blue/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-brand-blue-glow/5 blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 py-24 relative z-10 w-full grid lg:grid-cols-12 gap-12 items-center">
+          
           {/* Left Text Column */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="lg:col-span-7 flex flex-col items-start text-left"
+          >
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-xs md:text-sm font-semibold tracking-wide mb-8"
+              variants={itemVariants}
+              className="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-xs md:text-sm font-semibold tracking-wide mb-8 shadow-[0_0_15px_rgba(37,99,235,0.05)]"
             >
               <span className="w-2.5 h-2.5 rounded-full bg-brand-blue animate-pulse shadow-[0_0_10px_#2563EB]" />
               Now Booking Late Q2 2026
             </motion.div>
 
             <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={1}
-              className="font-display text-5xl md:text-7xl font-bold leading-tight tracking-tight mb-6 max-w-4xl"
+              variants={itemVariants}
+              className="font-display text-5xl md:text-7xl font-bold leading-tight tracking-tight mb-6 max-w-4xl select-none"
             >
-              We engineer high-impact <span className="text-brand-blue text-glow">digital tools</span> in record sprints.
+              We don't build <span className="hover:text-red-500 transition-colors duration-200 cursor-help relative group">generic templates<span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 text-[10px] font-mono bg-red-950/90 text-red-400 border border-red-900/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none uppercase tracking-wider whitespace-nowrap shadow-[0_0_15px_rgba(239,68,68,0.25)]">System Error: 6.4s load lag</span></span>. We engineer <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-cyan-400 to-violet-500 text-glow hover:scale-[1.02] inline-block transition-transform duration-200 cursor-help relative group">high-velocity<span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 text-[10px] font-mono bg-emerald-950/90 text-emerald-400 border border-emerald-900/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none uppercase tracking-wider whitespace-nowrap shadow-[0_0_15px_rgba(16,185,129,0.25)] font-bold">Sub-1s Zero Latency</span></span> digital systems.
             </motion.h1>
 
             <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={2}
+              variants={itemVariants}
               className="text-slate-300 font-medium text-lg md:text-xl lg:text-2xl max-w-2xl mb-10 leading-relaxed"
             >
-              Zorbit is an elite creative studio specializing in full-stack web architectures, UI/UX systems, and tailor-made enterprise Point of Sale systems.
+              Hey, I'm Nikunj. Together with Zorbit Studio, we construct high-conversion, zero-latency digital ecosystems in rapid, record-time engineering sprints.
             </motion.p>
 
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              custom={3}
+              variants={itemVariants}
               className="flex flex-wrap gap-4"
             >
               <Link to="/work">
                 <Button variant="primary">
-                  Explore Sprints & Work <HiArrowRight />
+                  Explore Case Studies & Sprints <HiArrowRight />
                 </Button>
               </Link>
               <Link to="/contact">
                 <Button variant="outline">Consult our Engineers</Button>
               </Link>
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Right Shell Console Widget Column */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={scaleVariants}
+            initial="hidden"
+            animate="show"
             className="lg:col-span-5 flex justify-center lg:justify-end"
           >
             <DevConsoleWidget />
@@ -131,11 +160,10 @@ export default function Home() {
           {stats.map(({ value, label }, i) => (
             <motion.div
               key={label}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              custom={i}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: i * 0.08, duration: 0.5, type: 'spring' }}
               className="text-center"
             >
               <p className="font-display text-3xl md:text-4xl font-bold text-brand-blue-light mb-1.5">{value}</p>
@@ -145,8 +173,110 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Interactive Speed Benchmark Audit */}
+      <section className="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <SpeedBenchmark />
+      </section>
+
+      {/* SOCIAL PROOF: Trusted partners & Client nodes */}
+      <section className="py-20 border-b border-white/5 bg-[#05070B] relative">
+        <div className="max-w-7xl mx-auto px-6 text-center space-y-10">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.4 }}
+            viewport={{ once: true }}
+            className="text-white text-xs font-mono uppercase tracking-widest font-bold"
+          >
+            Trusted by Rapid Sprint Partners
+          </motion.p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
+            {[
+              { name: 'METRO MIRCHI', industry: 'Food & Hospitality' },
+              { name: 'TN-GEOGUARD', industry: 'Government GIS' },
+              { name: 'FAST LAPTOP', industry: 'Hardware Repair' },
+              { name: 'CAMPUS LIBRARY', industry: 'Academic SaaS' },
+              { name: 'FINVAULT', industry: 'Secure Fintech' },
+              { name: 'FURNISHKART', industry: 'Retail E-Commerce' }
+            ].map((partner, idx) => (
+              <motion.div
+                key={partner.name}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05, type: 'spring' }}
+                className="p-5 rounded-2xl bg-brand-dark-2/40 border border-slate-900 flex flex-col items-center justify-center min-h-[90px] group hover:border-brand-blue/20 transition-all hover:bg-brand-dark-3/60 cursor-pointer"
+              >
+                <span className="font-display font-black text-xs md:text-sm text-white/40 group-hover:text-brand-blue-glow transition-all tracking-wider">
+                  {partner.name}
+                </span>
+                <span className="text-[8px] text-white/20 uppercase font-mono tracking-widest mt-1.5 block">
+                  {partner.industry}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Tech Ticker Marquee */}
       <TechMarquee />
+
+      {/* FOUNDER'S MANIFESTO SECTION (Nikunj's Personal Voice) */}
+      <section className="py-24 border-b border-white/5 bg-[#05070B] relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-[300px] h-[300px] rounded-full bg-violet-600/5 blur-[120px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold font-mono uppercase tracking-widest"
+          >
+            <FiAward size={12} /> The Founder's Thesis
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight"
+          >
+            Why I Founded Zorbit Studio.
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-left bg-brand-dark-2/60 border border-slate-800/80 p-8 rounded-3xl space-y-6 text-slate-350 leading-relaxed relative"
+          >
+            <div className="absolute top-4 right-6 text-8xl font-black text-slate-900/40 select-none font-serif">"</div>
+            <p className="text-base md:text-lg">
+              Most design agencies will drag you through 3 months of discovery calls, charge you for bloated slide decks, and deliver slow, overpriced templates.
+            </p>
+            <p className="text-base md:text-lg">
+              I started Zorbit because software should be built with absolute speed and steel-clad stability. We operate in rapid 2-day to 14-day sprints. We write clean code, strip away the latency, and build high-impact digital tools that perform.
+            </p>
+            <p className="text-base md:text-lg font-medium text-slate-200">
+              When you hire us, you work directly with me and my elite sprint team. No account managers. No communication delay. Just raw engineering speed.
+            </p>
+            
+            <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div>
+                <span className="font-display font-bold text-white block text-sm">Nikunj Kumar</span>
+                <span className="text-xs text-brand-blue-light font-medium tracking-wide">Founder & Lead Engineer, Zorbit</span>
+              </div>
+              <div className="flex gap-4">
+                <span className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono font-bold">
+                  <FiCheck size={14} /> Available Q2 2026
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Live Studio Telemetry Dashboard */}
       <section className="border-t border-white/5 bg-brand-dark-3/20 py-24 relative overflow-hidden">
@@ -157,9 +287,8 @@ export default function Home() {
           {/* Left info column */}
           <div className="lg:col-span-5 flex flex-col items-start text-left">
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue-glow text-xs font-semibold mb-4"
             >
@@ -167,21 +296,20 @@ export default function Home() {
             </motion.div>
             
             <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
               className="font-display text-3xl md:text-4xl font-bold mb-4"
             >
               Live Telemetry & <span className="text-brand-blue">Active Sprints</span>
             </motion.h2>
             
             <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              custom={1}
+              transition={{ delay: 0.2 }}
               className="text-slate-300 font-medium text-base md:text-lg mb-8 leading-relaxed max-w-md"
             >
               We operate with absolute transparency. Track our current software sprints, deployment velocities, and active queue health metrics in real-time.
@@ -197,11 +325,10 @@ export default function Home() {
               ].map((kpi, idx) => (
                 <motion.div
                   key={kpi.label}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="show"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  custom={idx + 2}
+                  transition={{ delay: idx * 0.05 + 0.1, type: 'spring' }}
                   className="p-4 rounded-xl bg-brand-dark-2/60 border border-slate-800/80 flex flex-col justify-between"
                 >
                   <div className="flex justify-between items-center mb-2">
@@ -223,7 +350,7 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-7 w-full p-6 md:p-8 rounded-3xl bg-brand-dark-2/50 border border-slate-800/80 backdrop-blur-sm"
+            className="lg:col-span-7 w-full p-6 md:p-8 rounded-3xl bg-brand-dark-2/50 border border-slate-800/80 backdrop-blur-sm shadow-[0_0_20px_rgba(37,99,235,0.05)]"
           >
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-display font-bold text-xs uppercase tracking-wider text-white/60 flex items-center gap-2">
@@ -276,20 +403,18 @@ export default function Home() {
       {/* Highlights */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="font-display text-3xl md:text-4xl font-bold mb-4"
         >
           Modular Architectures
         </motion.h2>
         <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          custom={1}
+          transition={{ delay: 0.1 }}
           className="text-slate-300 font-medium text-lg md:text-xl max-w-2xl mb-14 leading-relaxed"
         >
           We build robust, responsive assets optimized for immediate deployment.
@@ -299,12 +424,11 @@ export default function Home() {
           {highlights.map(({ icon: Icon, title, desc }, i) => (
             <motion.div
               key={title}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              custom={i}
-              className="border-beam-container rounded-2xl bg-brand-dark-2 group"
+              transition={{ delay: i * 0.08, type: 'spring' }}
+              className="border-beam-container rounded-2xl bg-brand-dark-2 group hover:-translate-y-1 transition-all"
             >
               <div className="border-beam-effect" />
               <div className="border-beam-content p-6 bg-brand-dark-2/95 rounded-2xl flex flex-col h-full w-full">
@@ -329,9 +453,8 @@ export default function Home() {
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           className="rounded-3xl bg-brand-dark-3 border border-brand-blue/20 p-12 text-center glow-blue"
         >

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiClock, FiTool, FiAlertCircle, FiCheckCircle, FiX, FiArrowRight } from 'react-icons/fi'
+import { FiClock, FiTool, FiAlertCircle, FiCheckCircle, FiX, FiArrowRight, FiTrendingUp } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { projectsData } from '../data/projectsData'
 import PageWrapper from '../components/PageWrapper'
@@ -201,7 +201,7 @@ export default function Work() {
               </div>
 
               {/* Modal Body */}
-              <div className="flex flex-col gap-5 border-y border-slate-800/60 py-5">
+              <div className="flex flex-col gap-6 border-y border-slate-800/60 py-5">
                 {/* Problem Section */}
                 <div className="flex gap-3 items-start">
                   <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -215,6 +215,21 @@ export default function Work() {
                   </div>
                 </div>
 
+                {/* Challenge Section (if exists) */}
+                {selectedProject.challenge && (
+                  <div className="flex gap-3 items-start">
+                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <FiTool className="text-amber-400" size={16} />
+                    </div>
+                    <div>
+                      <h4 className="text-xs md:text-sm text-slate-300 uppercase font-semibold tracking-wider font-mono">Technical Challenge</h4>
+                      <p className="text-slate-200 text-sm md:text-base leading-relaxed mt-1">
+                        {selectedProject.challenge}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Solution Section */}
                 <div className="flex gap-3 items-start">
                   <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -227,6 +242,21 @@ export default function Work() {
                     </p>
                   </div>
                 </div>
+
+                {/* Outcome Section (if exists) */}
+                {selectedProject.outcome && (
+                  <div className="flex gap-3 items-start">
+                    <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/10 flex items-center justify-center shrink-0 mt-0.5 shadow-[0_0_8px_rgba(6,182,212,0.15)]">
+                      <FiTrendingUp className="text-cyan-400" size={16} />
+                    </div>
+                    <div>
+                      <h4 className="text-xs md:text-sm text-slate-300 uppercase font-semibold tracking-wider font-mono">Business Outcome</h4>
+                      <p className="text-slate-200 text-sm md:text-base leading-relaxed mt-1 text-cyan-200">
+                        {selectedProject.outcome}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Modal Footer */}
