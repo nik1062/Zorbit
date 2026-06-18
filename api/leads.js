@@ -197,7 +197,7 @@ export default async function handler(req, res) {
   if (resendKey) {
     try {
       // 1. Send receipt email to the Client
-      await fetch('https://api.resend.com/emails', {
+      const clientRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -211,8 +211,13 @@ export default async function handler(req, res) {
         })
       })
 
+      if (!clientRes.ok) {
+        const errorText = await clientRes.text()
+        console.error(`[Resend Error] Client Receipt API call failed (HTTP ${clientRes.status}):`, errorText)
+      }
+
       // 2. Notify Zorbit Studio Admins
-      await fetch('https://api.resend.com/emails', {
+      const adminRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -226,9 +231,14 @@ export default async function handler(req, res) {
         })
       })
 
-      emailSuccess = true
+      if (!adminRes.ok) {
+        const errorText = await adminRes.text()
+        console.error(`[Resend Error] Admin Notification API call failed (HTTP ${adminRes.status}):`, errorText)
+      } else {
+        emailSuccess = true
+      }
     } catch (emailErr) {
-      console.error('Resend background email dispatch failed:', emailErr)
+      console.error('Resend background email dispatch encountered an exception:', emailErr)
     }
   }
 
