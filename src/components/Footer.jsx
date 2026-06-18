@@ -99,7 +99,7 @@ export default function Footer() {
               <NavLink to="/terms" className="hover:text-white transition-colors">Terms & SLA</NavLink>
             </div>
           </div>
-          <p className="text-slate-450 text-[10px] font-mono mt-8 md:text-right">
+          <p className="text-slate-400 text-xs font-mono mt-8 md:text-right">
             &copy; {new Date().getFullYear()} Zorbit Studio. All rights reserved.
           </p>
         </div>
