@@ -21,6 +21,7 @@ async function run() {
     '/contact',
     '/admin',
     '/admin/messages',
+    '/terms',
     '/demo/fast-laptop'
   ]
 

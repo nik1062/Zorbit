@@ -96,6 +96,7 @@ export default function Footer() {
               <NavLink to="/services" className="hover:text-white transition-colors">Sprint Services</NavLink>
               <NavLink to="/work" className="hover:text-white transition-colors">Case Studies</NavLink>
               <NavLink to="/contact" className="hover:text-white transition-colors">Initiate Sprint</NavLink>
+              <NavLink to="/terms" className="hover:text-white transition-colors">Terms & SLA</NavLink>
             </div>
           </div>
           <p className="text-slate-450 text-[10px] font-mono mt-8 md:text-right">

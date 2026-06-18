@@ -15,6 +15,7 @@ const Services = lazy(() => import('./pages/Services'))
 const Work = lazy(() => import('./pages/Work'))
 const Contact = lazy(() => import('./pages/Contact'))
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
+const Terms = lazy(() => import('./pages/Terms'))
 
 // Stylized Zorbit loading terminal indicator
 function LoadingSpinner() {
@@ -66,6 +67,7 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/messages" element={<AdminDashboard />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="/demo/fast-laptop" element={<FastLaptopMockup />} />
             </Routes>
           </AnimatePresence>
