@@ -1,27 +1,27 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiSliders, FiClock, FiDollarSign, FiZap, FiLayers, FiArrowRight } from 'react-icons/fi'
+import { FiSliders, FiClock, FiZap, FiLayers, FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 
 const projectTypes = [
-  { id: 'landing', label: 'Landing Page', basePrice: 499, baseDays: 3, baseSize: 45 },
-  { id: 'webapp', label: 'Full Web App', basePrice: 999, baseDays: 5, baseSize: 120 },
-  { id: 'backend', label: 'Backend System', basePrice: 1499, baseDays: 7, baseSize: 185 },
-  { id: 'enterprise', label: 'POS & Enterprise', basePrice: 1999, baseDays: 10, baseSize: 250 },
+  { id: 'landing', label: 'Landing Page', basePrice: 14999, baseDays: 3, baseSize: 45 },
+  { id: 'webapp', label: 'Full Web App', basePrice: 29999, baseDays: 5, baseSize: 120 },
+  { id: 'backend', label: 'Backend System', basePrice: 44999, baseDays: 7, baseSize: 185 },
+  { id: 'enterprise', label: 'POS & Enterprise', basePrice: 59999, baseDays: 10, baseSize: 250 },
 ]
 
 const addons = [
-  { id: 'sync', label: 'Real-time WebSocket Sync', price: 250, days: 2, size: 25 },
-  { id: 'admin', label: 'Admin Management Panel', price: 350, days: 3, size: 30 },
-  { id: 'gis', label: 'Leaflet GIS Coordinate Maps', price: 400, days: 2, size: 45 },
-  { id: 'resend', label: 'Resend API Automated Mail', price: 150, days: 1, size: 10 },
+  { id: 'sync', label: 'Real-time WebSocket Sync', price: 7500, days: 2, size: 25 },
+  { id: 'admin', label: 'Admin Management Panel', price: 10500, days: 3, size: 30 },
+  { id: 'gis', label: 'Leaflet GIS Coordinate Maps', price: 12000, days: 2, size: 45 },
+  { id: 'resend', label: 'Resend API Automated Mail', price: 4500, days: 1, size: 10 },
 ]
 
 export default function SprintEstimator() {
   const [selectedType, setSelectedType] = useState('landing')
   const [selectedAddons, setSelectedAddons] = useState([])
-  const [estimate, setEstimate] = useState({ price: 499, days: 3, size: 45 })
+  const [estimate, setEstimate] = useState({ price: 14999, days: 3, size: 45 })
 
   useEffect(() => {
     const typeObj = projectTypes.find(t => t.id === selectedType)
@@ -137,7 +137,7 @@ export default function SprintEstimator() {
                         ? 'border-brand-blue/35 bg-brand-blue/10 text-brand-blue-glow'
                         : 'border-slate-800/80 text-white/40 group-hover:text-white/60'
                     }`}>
-                      +${addon.price}
+                      +₹{addon.price.toLocaleString('en-IN')}
                     </span>
                   </button>
                 )
@@ -190,7 +190,7 @@ export default function SprintEstimator() {
               {/* Price Output */}
               <div className="flex flex-col gap-1 text-center pl-4">
                 <span className="text-[9px] font-mono font-bold text-white/40 uppercase tracking-widest flex items-center gap-1.5 justify-center">
-                  <FiDollarSign size={11} className="text-brand-blue-glow" /> Pricing Est.
+                  <span className="text-brand-blue-glow font-bold text-[11px]">₹</span> Pricing Est.
                 </span>
                 <AnimatePresence mode="wait">
                   <motion.h4
@@ -200,7 +200,7 @@ export default function SprintEstimator() {
                     exit={{ opacity: 0, y: -5 }}
                     className="font-display text-2xl md:text-3xl font-black text-brand-blue-light mt-1.5"
                   >
-                    ${estimate.price}
+                    ₹{estimate.price.toLocaleString('en-IN')}
                   </motion.h4>
                 </AnimatePresence>
                 <span className="text-[10px] text-slate-400 mt-1 uppercase font-mono tracking-wider">
