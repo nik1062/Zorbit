@@ -5,23 +5,23 @@ import { Link } from 'react-router-dom'
 import Button from './Button'
 
 const projectTypes = [
-  { id: 'landing', label: 'Landing Page', basePrice: 14999, baseDays: 3, baseSize: 45 },
-  { id: 'webapp', label: 'Full Web App', basePrice: 29999, baseDays: 5, baseSize: 120 },
-  { id: 'backend', label: 'Backend System', basePrice: 44999, baseDays: 7, baseSize: 185 },
-  { id: 'enterprise', label: 'POS & Enterprise', basePrice: 59999, baseDays: 10, baseSize: 250 },
+  { id: 'landing', label: 'Landing Page', basePrice: 4999, baseDays: 3, baseSize: 45 },
+  { id: 'webapp', label: 'Full Web App', basePrice: 9999, baseDays: 5, baseSize: 120 },
+  { id: 'backend', label: 'Backend System', basePrice: 14999, baseDays: 7, baseSize: 185 },
+  { id: 'enterprise', label: 'POS & Enterprise', basePrice: 19999, baseDays: 10, baseSize: 250 },
 ]
 
 const addons = [
-  { id: 'sync', label: 'Real-time WebSocket Sync', price: 7500, days: 2, size: 25 },
-  { id: 'admin', label: 'Admin Management Panel', price: 10500, days: 3, size: 30 },
-  { id: 'gis', label: 'Leaflet GIS Coordinate Maps', price: 12000, days: 2, size: 45 },
-  { id: 'resend', label: 'Resend API Automated Mail', price: 4500, days: 1, size: 10 },
+  { id: 'sync', label: 'Real-time WebSocket Sync', price: 2500, days: 2, size: 25 },
+  { id: 'admin', label: 'Admin Management Panel', price: 3500, days: 3, size: 30 },
+  { id: 'gis', label: 'Leaflet GIS Coordinate Maps', price: 4000, days: 2, size: 45 },
+  { id: 'resend', label: 'Resend API Automated Mail', price: 1500, days: 1, size: 10 },
 ]
 
 export default function SprintEstimator() {
   const [selectedType, setSelectedType] = useState('landing')
   const [selectedAddons, setSelectedAddons] = useState([])
-  const [estimate, setEstimate] = useState({ price: 14999, days: 3, size: 45 })
+  const [estimate, setEstimate] = useState({ price: 4999, days: 3, size: 45 })
 
   useEffect(() => {
     const typeObj = projectTypes.find(t => t.id === selectedType)
