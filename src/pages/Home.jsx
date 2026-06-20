@@ -23,6 +23,7 @@ import DevConsoleWidget from '../components/DevConsoleWidget'
 import TechMarquee from '../components/TechMarquee'
 import SpeedBenchmark from '../components/SpeedBenchmark'
 import SprintEstimator from '../components/SprintEstimator'
+import AuditForm from '../components/AuditForm'
 
 const stats = [
   { value: '5 Days', label: 'Average Web MVP Sprint' },
@@ -177,6 +178,7 @@ export default function Home() {
       {/* Interactive Speed Benchmark Audit */}
       <section className="max-w-7xl mx-auto px-6 py-12 relative z-10">
         <SpeedBenchmark />
+        <AuditForm />
       </section>
 
       {/* Interactive Sprint Estimator */}
