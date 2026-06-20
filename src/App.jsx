@@ -10,6 +10,8 @@ import FastLaptopMockup from './demo/FastLaptopDemo';
 
 // Lazy loaded page modules for code-splitting
 const HotelImperialHeightsDemo = lazy(() => import('./demo/Hotelimperialheightsdemo'))
+const BajrangiFurnitureDemo = lazy(() => import('./demo/Bajrangifurnituredemo'))
+const BlackDiamondDemo = lazy(() => import('./demo/Blackdiamonddemo'))
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
@@ -71,6 +73,8 @@ export default function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/demo/fast-laptop" element={<FastLaptopMockup />} />
               <Route path="/demo/hotel-imperial-heights" element={<HotelImperialHeightsDemo />} />
+              <Route path="/demo/bajrangi-furniture" element={<BajrangiFurnitureDemo />} />
+              <Route path="/demo/black-diamond" element={<BlackDiamondDemo />} />
             </Routes>
           </AnimatePresence>
         </Suspense>

@@ -32,4 +32,12 @@
     <loc>https://zorbit-studio.vercel.app/demo/hotel-imperial-heights</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://zorbit-studio.vercel.app/demo/bajrangi-furniture</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zorbit-studio.vercel.app/demo/black-diamond</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>
