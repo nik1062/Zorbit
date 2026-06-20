@@ -332,6 +332,13 @@ export default function BlackDiamondDemo() {
         )}
       </AnimatePresence>
 
+      {/* Interactive Pitch Demo Announcement Bar */}
+      <div className="relative z-50 bg-[#FFFBEB] border-b border-amber-200/40 py-2.5 px-4 text-center">
+        <p className="text-[10px] md:text-xs font-bold text-[#B45309] tracking-wide leading-relaxed">
+          ✨ <span className="uppercase">Interactive Demo Preview</span> — This is a design concept. The final production website will feature a full room booking engine, complete menus, live checkouts, and fully integrated room concierge management.
+        </p>
+      </div>
+
       {/* 1. HEADER & BRANDING */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-zinc-200/60 py-4 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
