@@ -22,7 +22,8 @@ async function run() {
     '/admin',
     '/admin/messages',
     '/terms',
-    '/demo/fast-laptop'
+    '/demo/fast-laptop',
+    '/demo/hotel-imperial-heights'
   ]
 
   console.log('[Zorbit SSG Engine] Initiating flat HTML pre-render script...')

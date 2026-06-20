@@ -9,6 +9,7 @@ import WhatsAppFloat from './components/WhatsAppFloat'
 import FastLaptopMockup from './demo/FastLaptopDemo';
 
 // Lazy loaded page modules for code-splitting
+const HotelImperialHeightsDemo = lazy(() => import('./demo/Hotelimperialheightsdemo'))
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
@@ -69,6 +70,7 @@ export default function App() {
               <Route path="/admin/messages" element={<AdminDashboard />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/demo/fast-laptop" element={<FastLaptopMockup />} />
+              <Route path="/demo/hotel-imperial-heights" element={<HotelImperialHeightsDemo />} />
             </Routes>
           </AnimatePresence>
         </Suspense>
