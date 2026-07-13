@@ -12,10 +12,10 @@ export default function ExitPopup() {
   useEffect(() => {
     // Safe session storage wrapper to prevent crashes in strict privacy modes
     const getSession = () => {
-      try { return sessionStorage.getItem('zorbit_popup_shown') } catch(e) { return null }
+      try { return sessionStorage.getItem('zorbit_popup_shown') } catch { return null }
     }
     const setSession = () => {
-      try { sessionStorage.setItem('zorbit_popup_shown', 'true') } catch(e) {}
+      try { sessionStorage.setItem('zorbit_popup_shown', 'true') } catch { /* ignore privacy error */ }
     }
 
     // Only show once per session
@@ -73,11 +73,13 @@ export default function ExitPopup() {
       await fetch('https://script.google.com/macros/s/AKfycbyCKKFNnIJ826kWCHm9JZjUeADqwfNf-VwaqkrHkW3JNt4_s0JtxU9E4YpzNTOo-N8wWg/exec', {
         method: 'POST',
         body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'text/plain' },
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
       })
       setSuccess(true)
-    } catch (err) {
-      setError('Network error. Please try again later.')
+    } catch {
+      setError('Failed to log request. Please email us directly.')
     } finally {
       setLoading(false)
     }
