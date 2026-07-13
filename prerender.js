@@ -18,6 +18,7 @@ async function run() {
     '/about',
     '/services',
     '/work',
+    '/resources',
     '/contact',
     '/admin',
     '/admin/messages',

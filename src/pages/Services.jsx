@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiCode, FiSmartphone, FiSliders, FiServer, FiChevronDown } from 'react-icons/fi'
+import { FiChevronDown } from 'react-icons/fi'
 import PageWrapper from '../components/PageWrapper'
 import { servicesData } from '../data/servicesData'
 import GlobalTelemetryMap from '../components/GlobalTelemetryMap'
+import Testimonials from '../components/Testimonials'
+import FAQ from '../components/FAQ'
+import BookCall from '../components/BookCall'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -43,6 +46,12 @@ const sopSteps = [
 
 export default function Services() {
   const [activeSop, setActiveSop] = useState('discovery')
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  const filteredServices = servicesData.filter((service) => {
+    if (activeFilter === 'All') return true
+    return service.category === activeFilter
+  })
 
   return (
     <PageWrapper>
@@ -61,20 +70,38 @@ export default function Services() {
           </p>
         </div>
 
-        {/* 1. Capabilities Bento Grid (4 Cards) */}
-        <div className="grid md:grid-cols-2 gap-6 mb-24">
-          {servicesData.map((service, idx) => {
-            const icons = [FiCode, FiSmartphone, FiSliders, FiServer]
-            const Icon = icons[idx] || FiCode
-            return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="border-beam-container rounded-3xl bg-brand-dark-2/40 group"
-              >
+        {/* Categories filter tabs */}
+        <div className="flex flex-wrap gap-2.5 mb-12 border-b border-slate-800 pb-5">
+          {['All', 'Development', 'AI & Data', 'Infrastructure', 'Design & Strategy', 'Support'].map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-5 py-2.5 rounded-xl text-xs md:text-sm font-semibold tracking-wide border transition-all cursor-pointer ${
+                activeFilter === filter
+                  ? 'bg-brand-blue/10 border-brand-blue/30 text-brand-blue-glow shadow-[0_0_15px_rgba(59,130,246,0.15)]'
+                  : 'bg-brand-dark hover:bg-brand-dark-3 text-white/40 hover:text-white border-slate-800'
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
+        {/* 1. Capabilities Bento Grid (17 Cards) */}
+        <motion.div layout className="grid md:grid-cols-3 gap-6 mb-24">
+          <AnimatePresence mode="popLayout">
+            {filteredServices.map((service, idx) => {
+              const Icon = service.icon || FiChevronDown
+              return (
+                <motion.div
+                  key={service.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className="border-beam-container rounded-3xl bg-brand-dark-2/40 group"
+                >
                 <div className="border-beam-effect" />
                 <div className="border-beam-content p-6 md:p-8 bg-brand-dark-2/95 rounded-3xl flex flex-col justify-between h-full w-full">
                   <div>
@@ -102,7 +129,8 @@ export default function Services() {
               </motion.div>
             )
           })}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
         {/* 2. Standard Operating Procedure (Grid Layout) */}
         <div className="grid lg:grid-cols-12 gap-12 py-16 border-t border-slate-800/60 items-start">
@@ -182,7 +210,17 @@ export default function Services() {
           </div>
           <GlobalTelemetryMap />
         </div>
+
+        {/* 4. Testimonials */}
+        <Testimonials />
+
+        {/* 5. FAQ */}
+        <FAQ />
+
+        {/* 6. Book a Call CTA */}
+        <BookCall />
       </section>
     </PageWrapper>
   )
 }
+

@@ -19,6 +19,7 @@ export default function Contact() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [blueprintApplied, setBlueprintApplied] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
 
   // Estimator States
   const [selectedServices, setSelectedServices] = useState({
@@ -183,44 +184,34 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    
-    const newLead = {
-      id: Date.now(),
-      name: form.name,
-      company: form.company || 'Personal Brand',
-      project: form.project,
-      email: form.email,
-      message: form.message,
-      timestamp: new Date().toISOString(),
-      archived: false,
-    }
-    
-    // Delegate persistence and server endpoint checks to central API service
-    const result = await api.createLead(newLead)
+    setSubmitError(null)
 
-    // Open native mail client pre-filled with the message details to zorbitweb@gmail.com if sync failed
-    const subject = encodeURIComponent(`Zorbit Inquest: ${form.project} from ${form.name}`)
-    const body = encodeURIComponent(
-      `Hello Zorbit Team,\n\n` +
-      `Here is a new project brief submitted from the website:\n\n` +
-      `Name: ${form.name}\n` +
-      `Company: ${form.company || 'Personal Brand'}\n` +
-      `Project Type: ${form.project}\n` +
-      `Client Email: ${form.email}\n\n` +
-      `Project Brief:\n` +
-      `${form.message}\n\n` +
-      `Best regards,\n` +
-      `${form.name}`
-    )
-    
-    if (!result.serverSynced) {
-      console.warn('Primary API endpoint unavailable, initiating mailto redirection fallback.')
-      window.location.href = `mailto:zorbitweb@gmail.com?subject=${subject}&body=${body}`
+    // Basic client-side validation
+    if (!form.name.trim() || !form.message.trim()) {
+      setSubmitError('Name and message are required.')
+      setLoading(false)
+      return
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(form.email)) {
+      setSubmitError('Please enter a valid email address.')
+      setLoading(false)
+      return
     }
 
-    setSent(true)
-    setForm({ name: '', company: '', project: '', email: '', message: '' })
-    setLoading(false)
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbyCKKFNnIJ826kWCHm9JZjUeADqwfNf-VwaqkrHkW3JNt4_s0JtxU9E4YpzNTOo-N8wWg/exec", {
+        method: "POST",
+        body: JSON.stringify(form),
+        headers: { "Content-Type": "text/plain" },
+      });
+      setSent(true)
+      setForm({ name: '', company: '', project: '', email: '', message: '' })
+    } catch (err) {
+      setSubmitError("Failed to send message. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -448,7 +439,7 @@ export default function Contact() {
                   <FiSend size={28} className="text-brand-blue-light" />
                 </div>
                 <h3 className="font-display text-2xl font-bold mb-2">Inquest Logged!</h3>
-                <p className="text-slate-300 text-sm md:text-base">We've saved your blueprint in our client database.</p>
+                <p className="text-slate-300 text-sm md:text-base">Thanks! We'll get back to you soon.</p>
                 <Button variant="outline" className="mt-6 text-xs cursor-pointer" onClick={() => setSent(false)}>
                   Submit New Brief
                 </Button>
@@ -529,7 +520,8 @@ export default function Contact() {
                   />
                 </div>
 
-                <div className="flex justify-end">
+                <div className="flex justify-end items-center gap-4">
+                  {submitError && <span className="text-red-400 text-xs font-mono">{submitError}</span>}
                   <Button 
                     type="submit" 
                     variant="primary" 
@@ -538,7 +530,7 @@ export default function Contact() {
                   >
                     {loading ? (
                       <>
-                        Transmitting... <span className="inline-block w-3 h-3 rounded-full border-2 border-white border-t-transparent animate-spin ml-1" />
+                        Sending... <span className="inline-block w-3 h-3 rounded-full border-2 border-white border-t-transparent animate-spin ml-1" />
                       </>
                     ) : (
                       <>
