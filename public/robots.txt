@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Exclude admin routes
+Disallow: /admin
+Disallow: /admin/messages
+
+Sitemap: https://zorbit-studio.vercel.app/sitemap.xml
